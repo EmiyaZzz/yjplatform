@@ -1,0 +1,147 @@
+.index-wrapper {
+    background-color: #f2f1f6;
+    margin-bottom: 150rpx;
+
+    .body {
+        width: 100%;
+        padding: 30rpx 20rpx;
+        position: relative;
+        z-index: 2;
+        // padding-top: 20rpx;
+
+        .tips {
+            margin-top: 20rpx;
+            padding-top: 12rpx;
+        }
+
+        .box1 {
+            border-radius: 10rpx;
+            margin-top: 10rpx;
+            margin-bottom: 30rpx;
+            background-color: #fff;
+
+            .title-panel {
+                padding-top: 30rpx;
+                padding-left: 40rpx;
+                height: 100rpx;
+                // color: #2a9fec;
+                // border-bottom: 4rpx solid rgba(209, 209, 209, 0.8);
+                 border-bottom: 2rpx solid $rcyj-bg-color-primary;
+
+                .text {
+                    padding: 0rpx auto;
+                    font-size: 36rpx;
+                    text-align: center;
+                }
+
+                img {
+                    width: 40rpx;
+                    height: 40rpx;
+                    margin-right: 40rpx;
+                }
+            }
+
+            .content-panel {
+                margin-top: 20rpx;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .cbtn {
+                    width: 264rpx;
+                    height: 100rpx;
+                    background-color: #2c6ced;
+                    margin-bottom: 20rpx;
+                    margin-right: 20rpx;
+                    border-radius: 10rpx;
+
+                    font-size: 30rpx;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 100rpx;
+                }
+
+                .r {
+                    height: 70rpx;
+                    line-height: 70rpx;
+                }
+
+                .home {
+                    margin: 20rpx auto;
+
+                    swiper {
+                        width: 690rpx;
+                        height: 323rpx;
+
+                        image {
+                            border-radius: 10rpx;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                .text-panel {
+                    // padding-left: 0rpx;
+                    // padding-right: 20rpx;
+                    margin: 0 40rpx;
+                    padding-bottom: 50rpx;
+
+                    .text {
+                        font-size: 26rpx;
+                        text-align: left;
+                        margin-top: 20rpx;
+                        text-decoration: underline;
+                    }
+
+                    .intro-text {
+                        font-size: 26rpx;
+                        text-align: left;
+                        margin-top: 20rpx;
+                        text-indent: 2em;
+                        line-height: 50rpx;
+                    }
+                }
+
+                img {
+                    border-radius: 10rpx;
+                    width: 650rpx;
+                }
+            }
+        }
+
+        .bg {
+            background-image: url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/box2.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            // box-shadow: 5px 5px 50px #b6b6b6;
+        }
+
+        .bg2 {
+            background-image: url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/box4.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .h {
+            height: 400rpx;
+        }
+
+        .h1 {
+            height: 520rpx;
+        }
+
+        .bottom {
+            margin-bottom: 150rpx;
+        }
+
+        .h2 {
+            // height: 250rpx;
+        }
+
+        .shadowb {
+            margin-top: 20rpx;
+            box-shadow: 5px 5px 20px #b6b6b6;
+        }
+    }
+}

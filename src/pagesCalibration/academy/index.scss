@@ -1,0 +1,70 @@
+.add-academy-wrapper {
+    min-height: 100vh;
+    background-color: #fff;
+
+    .box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 115rpx;
+        border-bottom: 1px solid #ccc;
+        padding-left: 40rpx;
+
+        .choose  {
+            display: flex;
+            align-items: center;
+        }
+
+        .line-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 180rpx;
+            border-right: 1px solid #ccc;
+            padding-right: 20rpx;
+            margin-right: 20rpx;
+        }
+    }
+
+    .cancel {
+        color: #1D1E1F;
+        font-size: 30rpx;
+        font-weight: 500;
+        padding: 0 33rpx;
+        border-left: 1px solid #ccc;   
+    }
+
+    .list {
+
+        .item {
+            padding: 39rpx 35rpx;
+            font-size: 30rpx;
+            color: #1D1E1F;
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
+    .no-data {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 100rpx;
+        background-color: #F6F7FB;
+        padding: 0 80rpx;
+
+        .tips {
+            color: #A26E15;
+            font-size: 30rpx;
+        }
+
+        .choose {
+            border: 1px soild #A26E15;
+            color: #A26E15;
+            font-size: 30rpx;
+            padding: 12rpx 25rpx;
+            border-radius: 10rpx;
+        }
+    }
+}

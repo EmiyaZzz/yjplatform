@@ -1,0 +1,89 @@
+.top-bg {
+    height: 200rpx;
+    border-radius: 20rpx;
+    background-image: linear-gradient(to bottom right, #15d0ca,#33c6d8 ,#3780ff);
+    // background:url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/bgt1.png) no-repeat; 
+    // background-size:100% 100%;
+    background-size: contain; 
+    display: flex;
+
+    background-color: #3880ff;
+
+    .avator {
+        width: 120rpx;
+        height: 120rpx;
+        border-radius: 12rpx;
+        margin-top: 40rpx;
+        margin-left: 32rpx;
+        // //background-image: url(/static/images/index/avator.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .name-bg {
+        display: flex;
+        padding-left: 30rpx;
+        padding-top: 50rpx;
+
+        .name {
+            font-size: 36rpx;
+            color: #fff;
+        }
+
+        .perbtn {
+            width: 130rpx;
+            height: 40rpx;
+            border-radius: 18rpx;
+            // background-color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            margin-left: 20rpx;
+            margin-top: 6rpx;
+            font-size: 24rpx;
+            text-align: center;
+            line-height: 38rpx;
+            color: #ffffff;
+        }
+    }
+
+    .level-bg {
+        padding-left: 30rpx;
+        padding-top: 10rpx;
+
+        p {
+            font-size: 26rpx;
+            color: #fff;
+        }
+    }
+
+    .qrcode {
+        margin-top: 50rpx;
+        width: 110rpx;
+        height: 110rpx;
+        border-radius: 12rpx;
+        // background-color: #fff;
+        // margin-left: 180rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 80rpx;
+        img {
+            width: 80%;
+            height: 80%;
+        }
+    }
+    .city {
+        margin-top: 60rpx;
+        width: 50rpx;
+        height: 50rpx;
+        border-radius: 12rpx;
+        background-color: #fff;
+        // margin-left: 180rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 80rpx;
+
+    }
+}

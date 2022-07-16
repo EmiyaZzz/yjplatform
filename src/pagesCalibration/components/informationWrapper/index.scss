@@ -1,0 +1,73 @@
+.information-wrapper {
+    min-height: 100vh;
+    background-color: #fff;
+
+    .topbg {
+        position: relative;
+        width: 100%;
+        height: 501rpx;
+        padding-top: 55rpx;
+        padding-left: 75rpx;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .h1 {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            font-size: 42rpx;
+            font-weight: bold;
+            line-height: 60rpx;
+            margin-bottom: 55rpx;
+
+            text {
+                padding: 8rpx 17rpx 9rpx;
+                color: #21BA80;
+                font-size: 22rpx;
+                border: 1px solid #21BA80;
+                border-radius: 24rpx;
+                margin-left: 20rpx;
+                transform: scale(0.9);
+                line-height: normal;
+            }
+        }
+
+        .h6 {
+            color: #F6DEB0;
+            font-size: 24rpx;
+            margin-bottom: 40rpx;
+        }
+    }
+
+    .my-progress {
+        display: flex;
+        align-items: center;
+
+        .progress-area {
+            position: relative;
+            width: 527rpx;
+
+            img {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-40%); 
+                width: 35rpx;
+                height: 35rpx;
+            }
+        }
+
+        .striped {
+            color: #F6DEB0;
+            font-size: 20rpx;
+            margin: 0 0 0 35rpx;
+        }
+    }
+    > .tips {
+        padding: 60rpx 80rpx;
+        color: #56575A;
+        font-size: 28rpx;
+        font-weight: 400;
+        text-align: center;
+        line-height: 40rpx;
+    }
+}

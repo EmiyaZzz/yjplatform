@@ -1,0 +1,334 @@
+.index-wrapper {
+    // min-height: 100vh;
+    background-color: #f2f1f6;
+    // background-color: red;
+    // margin-bottom: 80rpx;
+
+    .body {
+        .top-bg {}
+
+        // background-image:url(/static/images/shouye.jpg) ; 
+        width: 100%;
+        padding: 16rpx 20rpx ;
+        position: relative;
+        z-index: 2;
+        // padding-top: 20rpx;
+        margin-left: 0;
+
+        .tips {
+
+            padding-top: 16rpx;
+
+            .tips-content {
+                //  background-color: red;
+                // background-image: url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/tips-new.png);
+                // background-repeat: no-repeat;
+                // background-size: cover;
+                height: 100rpx;
+                // margin: 0rpx auto;
+                display: flex;
+                align-items: center;
+
+                 border-radius: 20rpx;
+                //  border: 1px solid rgba(156, 156, 156, 0.8);
+                // background-color: #f4f4f6;
+                background-color: #fff;
+                .laba {
+                    width: 70rpx;
+                    height: 70rpx;
+                    margin-right: 40rpx;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .scroll_box {
+                    width: 500rpx;
+
+                    .swiper {
+                        height: 81rpx;
+                        text-align: left;
+                        font-size: 26rpx;
+                        line-height: 81rpx;
+                    }
+                }
+
+                .tipsw {
+                    text-align: left;
+                    // margin-left: 90rpx;
+                    font-size: 30rpx;
+                    line-height: 74rpx;
+                }
+
+                img {
+                    width: 37.5rpx;
+                    height: 50rpx;
+                    margin-right: 150rpx;
+                    margin-left: 20rpx;
+                }
+            }
+        }
+
+
+        .fun-content {
+            border-radius: 20rpx;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between; // 替代原先的space-between布局方式
+            padding-top: 20rpx;
+            padding-bottom: 10rpx;
+
+            .fun-btn {
+
+                // margin-bottom: 20rpx;
+                //  margin: 0 10rpx 10rpx 0; // 间隙为10rpx
+                // margin-top: 10rpx;
+                .circle {
+                    margin: 0rpx auto 0rpx;
+                    width: 164rpx;
+                    height: 164rpx;
+
+                    // background-color: blue;
+                    .icon {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                .fun-text {
+                    text-align: center;
+                    font-size: 30rpx;
+
+                }
+            }
+
+            // 
+        }
+
+        .city {
+            margin: 20rpx auto;
+            height: 60rpx;
+            // width: 150rpx;
+            border: 1px solid rgba(12, 49, 214, 0.8);
+            border-radius: 20rpx;
+            display: flex;
+            justify-content: center;
+
+            .txt {
+                font-size: 30rpx;
+                color: rgb(0, 0, 0);
+                line-height: 60rpx;
+                // text-align: center;
+            }
+
+            .img-a {
+                width: 60rpx;
+                height: 60rpx;
+            }
+        }
+
+        .img-wrap {
+            margin: 30rpx auto;
+            background-color: #fff;
+            border-radius: 20rpx;
+            height: 980rpx;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .btn {
+            height: 100rpx;
+            margin: 60rpx 200rpx;
+            background-color: #2c6ced;
+            border-radius: 20rpx;
+            text-align: center;
+            font-size: 32rpx;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .bgw{
+             background-color: #fff;        
+        }
+        .box1 {
+            border-radius: 20rpx;
+            // margin-top: 10rpx;
+            
+
+            .title-panel {
+                padding-top: 30rpx;
+                padding-left: 40rpx;
+                display: flex;
+                justify-content: space-between;
+                font-size: 36rpx;
+                height: 100rpx;
+                // color: #2a9fec;
+                // border-bottom: 4rpx solid rgba(209, 209, 209, 0.8);
+                //  border-bottom: 4rpx solid #d9d9d9;
+
+                img {
+                    width: 20rpx;
+                    height: 30rpx;
+                    margin-right: 30rpx;
+                    margin-top: 10rpx;
+                    color: #fff;
+                }
+            }
+            .line{
+                height: 1rpx;
+                // width: 100rpx;
+                background-color: $rcyj-bg-color-primary;
+       
+            }
+            .shen{
+                background-color: $rcyj-bg-color-primary;
+                margin-bottom: 30rpx;
+            }
+
+            .content-panel {
+             
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+
+                .cbtn {
+                    width: 264rpx;
+                    height: 100rpx;
+                    background-color: #2c6ced;
+                    margin-bottom: 20rpx;
+                    margin-right: 20rpx;
+                    border-radius: 10rpx;
+
+                    font-size: 30rpx;
+                    color: #fff;
+                    text-align: center;
+                    line-height: 100rpx;
+                }
+
+                .r {
+                    height: 70rpx;
+                    line-height: 70rpx;
+                }
+
+                .home {
+                    margin: 0rpx auto;
+
+                    swiper {
+                        width: 690rpx;
+                        height: 323rpx;
+
+                        image {
+                            border-radius: 20rpx;
+                            width: 100%;
+                            height: 100%;
+                        }
+                    }
+                }
+
+                .text-panel {
+                    // padding-left: 0rpx;
+                    // padding-right: 20rpx;
+                    margin: 20rpx 40rpx;
+                    padding-bottom: 20rpx;
+
+                    .text {
+                        font-size: 26rpx;
+                        text-align: left;
+                        margin-top: 20rpx;
+                        text-decoration: underline;
+                    }
+
+                    .intro-text {
+                        font-size: 26rpx;
+                        text-align: left;
+                        // margin-top: 20rpx;
+                        text-indent: 2em;
+                        line-height: 45rpx;
+                    }
+                }
+
+                img {
+                    border-radius: 20rpx;
+                    width: 650rpx;
+                }
+            }
+
+            .rank-panel {
+                margin: 20rpx 40rpx 0rpx;
+
+                .rank-list-title {
+                    display: flex;
+                    height: 80rpx;
+                    // background-color: red;
+                    justify-content: space-between;
+                    line-height: 80rpx;
+                    text-align: left;
+                    font-size: 26rpx;
+                    // font-weight: bold;
+                }
+
+                .scroll_box {
+                    margin:20rpx 0rpx 0rpx;
+                    .swiper {              
+                        .swiper-l {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .swiper-item {
+                                text-align: left;
+                                font-size: 26rpx;
+                                width: 160rpx;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .bg {
+            background-image: url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/box3.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            // box-shadow: 5px 5px 50px #b6b6b6;
+        }
+        .bg2{
+            background-image: url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/box4.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .bgw{
+            background-color: #fff;
+        }
+
+        .h {
+            height: 400rpx;
+        }
+
+        .h1 {
+            height: 520rpx;
+        }
+
+        .bottom {
+            margin-bottom: 150rpx;
+        }
+
+        .h2 {
+            // height: 250rpx;
+        }
+
+        .shadowb {
+            box-shadow: 5px 5px 20px #dfe4e7;
+            // margin-bottom: 30rpx;
+        }
+
+
+    }
+
+}

@@ -1,0 +1,66 @@
+// 内容居中
+.text-c {
+  text-align: center;
+}
+// 内容居左
+.text-l {
+  text-align: left;
+}
+// 内容居右
+.text-r {
+  text-align: right;
+}
+// 清浮动&遮盖
+.over-hide {
+  overflow: hidden;
+}
+// 左浮动
+.float-l {
+  float: left;
+}
+// 右浮动
+.float-r {
+  float: right;
+}
+// 块居中
+.mg-auto {
+  margin: auto;
+}
+.inline-block {
+  display: inline-block;
+}
+.at-row {
+	display: flex;
+	flex-wrap: wrap;
+	.at-col-1 { width: 8.4%;}
+	.at-col-2 { width: 16.7%;}
+	.at-col-3 { width: 25%;}
+	.at-col-4 { width: 33.4%;}
+	.at-col-5 { width: 41.7%;}
+	.at-col-6 { width: 50%;}
+	.at-col-7 { width: 58.3%;}
+	.at-col-8 { width: 66.6%;}
+	.at-col-9 { width: 75%;}
+	.at-col-10 { width: 83.3%;}
+	.at-col-11 { width: 91.6%;}
+	.at-col-12 { width: 100%;}
+}
+.at-row--nowrap {
+	flex-wrap: nowrap;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.flex-end {
+	justify-content: flex-end;
+}
+
+.felx-group {
+	flex: 1; 
+}

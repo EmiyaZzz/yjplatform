@@ -1,0 +1,579 @@
+{
+	"easycom": {
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/ad/index",
+			"style": {
+				"navigationBarTitleText": "人才评估定价平台",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "人才评估定价平台",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sy/index",
+			"style": {
+				"navigationBarTitleText": "人才评估定价平台-首页",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/regist/index",
+			"style": {
+				"navigationBarTitleText": "用户注册",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/agreement/index",
+			"style": {
+				"navigationBarTitleText": "用户协议",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sjsearch/index",
+			"style": {
+				"navigationBarTitleText": "快速评估",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sjreport/index",
+			"style": {
+				"navigationBarTitleText": "身价报告",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sjcertificate/index",
+			"style": {
+				"navigationBarTitleText": "身价证书",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaIdentityTypeSelect/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-人才类型",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaluateUserInfo/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-基本信息",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaEducation/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-学历学位",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaDuty/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-职务职称",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaIntellectual/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-知识产权",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaTechnological/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-科技成果",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaContribute/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-成就贡献",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaHonor/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-荣誉称号",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaSocietypost/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-社会职务",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaAdditional/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-辅助信息",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/evaWealthInfo/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-财富信息",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/accumulatePoints/index",
+			"style": {
+				"navigationBarTitleText": "身价积分",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sjCard/index",
+			"style": {
+				"navigationBarTitleText": "身价卡包",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/sjDoc/index",
+			"style": {
+				"navigationBarTitleText": "身价档案",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
+			"path": "pages/index/rank",
+			"style": {
+				"navigationBarTitleText": "身价排名"
+			}
+		},
+		{
+			"path": "pages/index/unscramble",
+			"style": {
+				"navigationBarTitleText": "身价解读"
+			}
+		},
+		{
+			"path": "pages/shouye/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/index-new/index",
+			"style": {
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/wode/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		},
+		{
+			"path": "pages/wodeInfo/index",
+			"style": {
+				"navigationBarTitleText": "信息修改"
+			}
+		},
+		{
+			"path": "pages/sjuse/index",
+			"style": {
+				"navigationBarTitleText": "身价常识"
+			}
+		},
+		{
+			"path": "pages/sjpdf/index",
+			"style": {
+				"navigationBarTitleText": "报告"
+			}
+		},
+		{
+			"path": "pages/pdfView/index",
+			"style": {
+				"navigationBarTitleText": "pdf预览"
+			}
+		},
+		{
+			"path": "pages/userScoreRecords/index",
+			"style": {
+				"navigationBarTitleText": "评估记录"
+			}
+		}
+	],
+	"tabBar": {
+		"color": "#7A7E83", // tab 上的文字默认颜色
+		"selectedColor": "#7469b", // tab 上的文字选中时的颜色
+		"borderStyle": "black", // tabbar 上边框的颜色，可选值 black/white
+		"backgroundColor": "#ffffff", // tab 的背景色
+		"list": [
+			{ // 最少2个、最多5个 tab
+				"pagePath": "pages/sy/index", // 页面路径，必须在 pages 中先定义
+				"iconPath": "static/images/首页.png", // 图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px
+				"selectedIconPath": "static/images/首页.png", // 选中时的图片路径
+				"text": "首页" // tab 上按钮文字
+			},
+			{ // 最少2个、最多5个 tab
+				"pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
+				"iconPath": "static/images/评估.png", // 图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px
+				"selectedIconPath": "static/images/评估.png", // 选中时的图片路径
+				"text": "评估" // tab 上按钮文字
+			},
+			// { // 最少2个、最多5个 tab
+			// 	"pagePath": "pages/sjcertificate/index", // 页面路径，必须在 pages 中先定义
+			// 	"iconPath": "static/images/评估.png", // 图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px
+			// 	"selectedIconPath": "static/images/评估.png", // 选中时的图片路径
+			// 	"text": "评估" // tab 上按钮文字
+			// },
+			// { // 最少2个、最多5个 tab
+			// 	"pagePath": "pages/index/index", // 页面路径，必须在 pages 中先定义
+			// 	"iconPath": "static/images/应用.png", // 图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px
+			// 	"selectedIconPath": "static/images/应用.png", // 选中时的图片路径
+			// 	"text": "应用" // tab 上按钮文字
+			// },
+			{
+				"pagePath": "pages/wode/index",
+				"iconPath": "static/images/我的.png",
+				"selectedIconPath": "static/images/我的.png",
+				"text": "我的"
+			}
+		]
+	},
+	"subPackages": [
+		{
+			"root": "pagesAuth",
+			"pages": [
+				{
+					"path": "login/index",
+					"style": {
+						"navigationBarTitleText": "用户登陆",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				},
+				{
+					"path": "change/changeMobile",
+					"style": {
+						"navigationBarTitleText": "换绑手机号",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				},
+				{
+					"path": "change/changePassword",
+					"style": {
+						"navigationBarTitleText": "修改密码",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				},
+				{
+					"path": "change/changeEmail",
+					"style": {
+						"navigationBarTitleText": "修改邮箱",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				}
+				// {
+				// 	"path": "news/agreement",
+				// 	"style": {
+				// 		"navigationBarTitleText": "隐私协议",
+				// 		"navigationBarBackgroundColor": "#fff",
+				// 		"navigationBarTextStyle": "black"
+				// 	}
+				// }
+			]
+		},
+		{
+			"root": "pagesCalibration",
+			"pages": [
+				{
+					"path": "chooseIdentity/index", // 选择身份类型
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "identityNote/index", // 身份类型说明
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "workingStatus/index", // 人才状态选择
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationI", // 填写信息一
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationII", // 填写信息二
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIII", // 填写信息三
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIIIStu", // 填写信息三-学生7
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVGovern", // 填写信息四-党政1
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVFram", // 填写信息四-农村5
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVSociety", // 填写信息四-社会6
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVHighLevel", // 填写信息四-高层次人才8
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVBusmanage", // 填写信息四-企业管理2
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVProfesSkill", // 填写信息四-专业技术3
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/informationIVHighProfess", // 填写信息四-高技能4
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addHonor", // 添加荣誉
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addGrassExperience", // 添加基层工作经历
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addProfessional", // 添加资格证
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addCompetition", // 添加赛事
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addScientific", // 添加科研成果
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/addProfess", // 添加技术成果
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementHonor", // 管理条目列表-荣誉
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementCompetition", // 管理条目列表-参加赛事
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementGrassExperience", // 管理条目列表-工作经历
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementProfessional", // 管理条目列表-技能资格
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementScientific", // 管理条目列表-技能资格
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "fillInformation/managementProfess", // 管理条目列表-技术成果
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "authorize/authorize", // 请确认校正信息并授权
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "authorize/revise", //校正信息
+					"style": {
+						"navigationBarTitleText": "",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "white"
+					}
+				},
+				{
+					"path": "academy/addAcademy", // 选择院校
+					"style": {
+						"navigationBarTitleText": "院校选择",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				},
+				{
+					"path": "academy/addCountry", // 选择国家
+					"style": {
+						"navigationBarTitleText": "国家选择",
+						"navigationBarBackgroundColor": "#fff",
+						"navigationBarTextStyle": "black"
+					}
+				}
+			]
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "人才评估定价平台",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#212223"
+	}
+}

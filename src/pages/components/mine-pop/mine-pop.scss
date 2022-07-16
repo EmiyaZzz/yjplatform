@@ -1,0 +1,68 @@
+.mine-pop-content {
+    position: relative;
+    padding: 107rpx 65rpx 0;
+    height: 100%;
+
+    .avatar {
+        position: relative;
+        width: 176rpx;
+        height: 176rpx;
+        margin: 0 auto 58rpx;
+
+        .avatar-img {
+            width: 176rpx;
+            height: 176rpx;
+            border-radius: 50%;
+        }
+
+        .upload-icon {
+            position: absolute;
+            bottom: -10rpx;
+            right: -10rpx;
+            width: 67rpx;
+        }
+    }
+
+    .name {
+        font-size: 38rpx;
+        font-weight: bold;
+        color: #373737;
+        padding-bottom: 39rpx;
+        text-align: center;
+    }
+
+    .mobile {
+        font-size: 30rpx;
+        font-weight: 400;
+        color: #373737;
+        padding-bottom: 100rpx;
+        text-align: center;
+    }
+
+    .edit-item {
+        padding-left: 35rpx;
+        color: #373737;
+        font-size: 30rpx;
+        font-weight: 500;
+
+        .icon {
+            width: 44rpx;
+        }
+    }
+
+    .outlogin {
+        position: absolute;
+        left: 65rpx;
+        right: 65rpx;
+        bottom: 130rpx;
+        height: 88rpx;
+        border: 1px solid #C99E54;
+        border-radius: 20rpx; 
+        font-size: 36rpx;
+        font-family: PingFangSC;
+        font-weight: 500;
+        color: #C99E54;
+        line-height: 84rpx;
+        text-align: center;
+    }
+}

@@ -1,0 +1,28 @@
+.u-switch {
+    width: 90rpx!important;
+    height: 20rpx!important;
+
+    .u-switch__node {
+        background-color: #9094A0!important;
+        top: -16rpx!important;
+        left: -1px!important;
+        border: 2rpx solid #fff;
+    }
+
+    &--on {
+        .u-switch__node {
+            background-color: #21BA80!important;
+        }
+    }
+}
+.u-list-item {
+    border: 1px dashed #9094A0;
+    background: #F6F7FB!important;
+    border-radius: 10rpx!important;
+    color: #9094A0!important;
+    font-size: 24rpx!important;
+
+    .u-add-tips {
+        margin-top: 10rpx!important;
+    }
+}

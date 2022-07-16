@@ -1,0 +1,54 @@
+.login-wrapper {
+    min-height: 100vh;
+    padding: 150rpx 40rpx 120rpx;
+    background-color: $rcyj-bg-color-primary;//#e5f5fa
+
+    .login-welcome-tips {
+        color: #FFFFFF;
+        margin-bottom: 110rpx;
+
+        .big-tit {
+            width: 475rpx;
+            font-size: 54rpx;
+            font-weight: 500;
+            padding-bottom: 46rpx;
+
+            image {
+                width: 100%;
+            }
+        }
+
+        .small-tit {
+            color: #9094A0;
+            font-size: 28rpx;
+            font-weight: 400;
+        }
+    }
+
+    .login-form-wrapper {  
+        padding: 50rpx;
+        background: #fff;
+        border-radius: 0px 75rpx 0px 75rpx;
+
+        .in-label {   
+            font-size: 40rpx;
+            font-weight: 500;
+            // color: #003e8d;
+        }
+
+        .in-box {
+            padding: 30rpx 0;
+            // border-bottom: 1px solid rgba(12, 49, 214, 0.8);
+            border-bottom: 1px solid rgba(236, 236, 236, 1);
+            // color: #003e8d;
+            font-size: 30rpx;
+        }
+
+        .inlet {
+            color: #9094A0;
+            font-size: 24rpx;
+            padding: 0 23rpx;
+            margin-top: 60rpx;
+        }
+    }
+}

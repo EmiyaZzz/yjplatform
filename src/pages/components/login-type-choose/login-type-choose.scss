@@ -1,0 +1,51 @@
+.login-popup-content {
+    
+    .login-pop-img {
+        position: relative;
+        width: 100%;
+        z-index: 1
+    }
+
+    .login-pop-bg {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 30rpx;
+        padding-top: 220rpx;
+        margin-top: -220rpx;
+        padding-bottom: 80rpx;
+
+        .tips {
+            color: #1D1E1F;
+            font-size: 30rpx;
+            line-height: 44rpx;
+            margin-bottom: 50rpx;
+            padding-left: 108rpx;
+        }
+
+        .btn {
+            width: 387rpx;
+            height: 88rpx;
+            border-radius: 44rpx;
+            font-size: 36rpx;
+            font-family: PingFang SC;
+            font-weight: 500;
+            margin: 0 auto;
+            text-align: center;
+            line-height: 88rpx;
+
+            &.reg-btn {
+                background: linear-gradient(0deg, #C99E54 0%, #CFAB6E 95%);
+                color: #FFFFFF;
+                margin-bottom: 35rpx;
+            }
+
+            &.login-btn {  
+                background: #FFFFFF;
+                border: 1px solid #A26E15;
+                border-radius: 44rpx;
+                color: #A26E15;
+            }
+        }
+    }
+
+}
