@@ -45,9 +45,10 @@ export function formatterDate (date) {
 
 // 分数变动提示窗口
 export function showScore (res,n) {
+  console.log(res)
   uni.showToast({
     icon: 'none',
-    title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + Math.abs(res) + '万',
+    title: res.message,// res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + Math.abs(res) + '万',
     duration: n
   })
   return n
