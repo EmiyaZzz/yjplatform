@@ -27,7 +27,7 @@
           </view>
         </view>
 
-        <view class="box1 shadowb bgw" style="margin-top:16rpx;padding-bottom: 0rpx;">
+        <view class="box1 shadowb bgw" style="margin-top:16rpx;padding-bottom: 10rpx;">
           <view class="fun-content">
             <view class="fun-btn" @click="toEva">
               <view class="circle">
@@ -118,7 +118,7 @@
                 评估人员
               </view>
               <view class="">
-                评估身价
+                综合身价
               </view>
             </view>
             <view>
@@ -130,7 +130,9 @@
                     <view class="swiper-item uni-bg-green" style="font-size: 24rpx;margin-right:50rpx">{{
                         item.create_time
                     }}</view>
-                    <view class="swiper-item uni-bg-green">{{ item.real_name.substring(0, 1) }}**
+                     <view v-if=" item.real_name" class="swiper-item uni-bg-green">{{ item.real_name.substring(0, 1) }}**
+                    </view>
+                    <view v-else class="swiper-item uni-bg-green">{{ item.real_name}}**
                     </view>
                     <!-- <view class="swiper-item uni-bg-green">{{ item.real_name }}**</view> -->
                     <view class="swiper-item uni-bg-green" style="text-align: right;padding-right:40rpx">{{

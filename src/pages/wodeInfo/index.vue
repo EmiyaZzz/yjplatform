@@ -15,7 +15,7 @@
                 <!-- <view>山东省代理</view> -->
               </view>
               <view class="jf-bg">
-                身价积分：{{ accumulatePoints }}
+                身价分：{{ accumulatePoints }}
               </view>
             </view>
           </view>
@@ -71,7 +71,7 @@ export default Vue.extend({
   data() {
     return {
       userId: '',
-      accumulatePoints: 0,  //身价积分
+      accumulatePoints: 0,  //身价分
       userName: '',
       complexScore: '',
       identityType: '',

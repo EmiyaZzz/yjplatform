@@ -13,9 +13,9 @@
         <view class="fun-bg">
           <!-- <view class="btn1" @click="avatorImgUpload">委托制作</view> -->
           <view class="btn1" @click="openSheet('headImg')">照片上传</view>
-           <view class="btn1" @click="toBuy" v-if="payStatus == '0'">购买（1积分）</view>
-           <view class="btn1" @click="toBuy" v-if="isExpired == '1'">购买（1积分）</view>
-           <view class="btn1" @click="downloadImg" v-if="payStatus == '1'">下载</view>
+          <view class="btn1" @click="toBuy" v-if="payStatus == '0'">认领</view>
+          <view class="btn1" @click="toBuy" v-if="isExpired == '1'">认领</view>
+          <view class="btn1" @click="downloadImg" v-if="payStatus == '1'">下载</view>
         </view>
 
         <!-- <toast ref='toast'></toast>
@@ -81,6 +81,7 @@ export default Vue.extend({
     })
     certificateQuery().then((result) => {
       this.payStatus = result.payStatus
+      console.log(result)
       this.isExpired = result.isExpired
       this.commodityId = result.id
       certificateInit({ paystatus: this.payStatus }).then((res) => {
@@ -142,23 +143,36 @@ export default Vue.extend({
       let headPhoto = JSON.parse(res[1].data).data.key
     },
     toBuy() {
-      reportOrder(
-        {
-          commodityId: this.commodityId,
-          payWay: "0"
+      let that = this
+      uni.showModal({
+        title: '支付',
+        content: '即将花费5积分',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            reportOrder(
+              {
+                commodityId: that.commodityId,
+                payWay: "0"
+              }
+            ).then((res) => {
+              console.log(res);
+              // this.$toast(res)
+              uni.showToast({
+                icon: 'none',
+                title: `购买成功！`,
+                // duration: 2000
+              })
+              that.payStatus = '1'
+            }).catch((err) => {
+              console.log(err.message);
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
         }
-      ).then((res) => {
-        console.log(res);
-        // this.$toast(res)
-        uni.showToast({
-          icon: 'none',
-          title: `购买成功！`,
-          duration: 2000
-        })
-        this.payStatus = '1'
-      }).catch((err) => {
-        console.log(err.message);
-      })
+      });
+
     },
     getIdentity(data) {
       this.identity = data.value

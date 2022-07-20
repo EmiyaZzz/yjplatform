@@ -320,7 +320,7 @@ export default Vue.extend({
           validateCode
         }
         assessRegisterApi(params).then((data) => {
-          this.$toast('注册成功，奖励您10个身价积分')
+          this.$toast('注册成功，奖励您10个身价分')
           this.$ls.set('KEY_ACCESS_TOKEN', data.access_token)
           console.log(data)
           uni.reLaunch({

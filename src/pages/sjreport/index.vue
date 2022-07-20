@@ -21,7 +21,7 @@
             <img src="/static/images/index/qr.webp" alt="">
           </view>
         </view> -->
-        <view class="box1 shadowb bgw" style="margin-top:16rpx" @click="toUseIntro">
+        <view class="box1 shadowb bgw" style="margin-top:16rpx">
           <view class="title-panel">
             <view>
               身价报告
@@ -48,7 +48,7 @@
             </view>
           </view>
         </view>
-        <view class="box1 shadowb bgw" style="margin-top:16rpx" @click="toUseIntro">
+        <view class="box1 shadowb bgw" style="margin-top:16rpx">
           <view class="title-panel">
             <view>
               报告用途
@@ -140,7 +140,7 @@ import {
   investReportSend,
   postReportSend,
   reportList,
-  reportView
+  // reportView
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
@@ -181,26 +181,26 @@ export default Vue.extend({
       this.identity = data.value
     },
     sendReport1(item) {
-
-      reportView(
-        {
-          payType: item.payStatus,
-          reportType: item.commodityNum
-        }
-      ).then((res) => {
-        // wx.navigateTo({
-        //   url: `pages/sjpdf/index`
-        // });
-        this.$changePage({
+    this.$changePage({
           params: {
             reportType: item.commodityNum,
-            payStatus: item.payStatus,
+            // payStatus: item.payStatus,
             commodityId: item.id,
-            data: res,
+            // data: res,
           },
           url: 'pages/sjpdf/index'
         })
-      })
+      // reportView(
+      //   {
+      //     payType: item.payStatus,
+      //     reportType: item.commodityNum
+      //   }
+      // ).then((res) => {
+      //   // wx.navigateTo({
+      //   //   url: `pages/sjpdf/index`
+      //   // });
+    
+      // })
     },
     sendReport2(res) {
       if (this.emailS) {

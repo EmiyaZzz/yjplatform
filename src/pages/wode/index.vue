@@ -19,7 +19,7 @@
                   <img :src=imgjf alt="" />
                 </view>
                 <view>
-                  身价积分：{{ accumulatePoints }}
+                  身价分：{{ accumulatePoints }}
                 </view>
               </view>
             </view>
@@ -61,17 +61,17 @@
               </view>
               <p class="p1">评估记录</p>
             </view>
-            <view class="btn1 whitebg">
+            <view class="btn1 whitebg" @click="toOrderList()">
               <view class="img-l">
                 <img :src=imgcz alt="" />
               </view>
-              <p class="p1">身价充值</p>
+              <p class="p1">订单列表</p>
             </view>
             <view class="btn1 whitebg" @click="toAccumulatePoints()">
               <view class="img-l">
                 <img :src=imgjf alt="" />
               </view>
-              <p class="p1">身价积分</p>
+              <p class="p1">身价分</p>
             </view>
             <view class="btn1 whitebg" @click="toCard()">
               <view class="img-l">
@@ -113,6 +113,7 @@
               <p class="p1">退出登录</p>
             </view>
           </view>
+          <view style="text-align:right">当前版本：V1.0.5</view>
         </view>
         <!-- <view v-else>
           <view class="fun-bg">
@@ -148,7 +149,7 @@ export default Vue.extend({
     return {
       userId: '',
       scoreStatus: '0',
-      accumulatePoints: 0,  //身价积分
+      accumulatePoints: 0,  //身价分
       action: config.gatewayUrl + '/assess/oss/uploadReturnUrl',
       userName: '',
       complexScore: '未评估',
@@ -405,6 +406,21 @@ export default Vue.extend({
       else {
         this.isShow = false
         this.$changePage('pages/userScoreRecords/index')
+      }
+    },
+    toOrderList() {
+      if (!this.getToken) {
+        uni.showToast({
+          icon: 'none',
+          title: `未登录，即将前往登录页`,
+          duration: 2000
+        })
+        setTimeout(() => {
+          this.$changePage("pagesAuth/login/index");
+        }, 2000);
+      } else {
+        this.isShow = false
+        this.$changePage('pages/OrderList/index')
       }
     },
     toAccumulatePoints() {

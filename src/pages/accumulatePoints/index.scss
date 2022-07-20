@@ -3,18 +3,18 @@
     margin-bottom: 150rpx;
     .body {
             width: 100%;
-            padding: 30rpx 20rpx;
+            padding: 16rpx 20rpx;
             position: relative;
             z-index: 2;
             // padding-top: 20rpx;
         .tips {
-            margin-top: 20rpx;
+            margin-top: 16rpx;
             padding-top: 12rpx;
         }
         .box1 {
             border-radius: 10rpx;
-            margin-top: 10rpx;
-            margin-bottom: 30rpx;
+            margin-top: 16rpx;
+            margin-bottom: 0rpx;
             background-color: #fff;        
 
             
@@ -108,6 +108,61 @@
                     width: 650rpx;
                 }
             }
+            .rank-panel {
+                margin: 00rpx 40rpx 0rpx;
+                width: 100%;
+               
+                .points-title{
+                    display: flex;
+                    justify-content: space-between;
+
+                    .content{
+                        display: flex;
+                        margin: 20rpx 0;
+                        justify-content: space-between;
+                        .points-img{
+                            margin-top: 6rpx;
+                            width: 30rpx;
+                            height: 30rpx;
+                            margin-right: 10rpx;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                
+                }
+
+                .rank-list-title {
+                    display: flex;
+                    height: 80rpx;
+                    // background-color: red;
+                    justify-content: space-between;
+                    line-height: 80rpx;
+                    text-align: left;
+                    font-size: 26rpx;
+                    // font-weight: bold;
+                }
+
+                .scroll_box {
+                    margin:20rpx 0rpx 0rpx;
+                    padding-bottom: 50rpx;
+                    .swiper {              
+                        .swiper-l {
+                            display: flex;
+                            justify-content: space-between;
+
+                            .swiper-item {
+                                text-align: left;
+                                font-size: 26rpx;
+                                width: 150rpx;
+                            }
+                        }
+                    }
+                }
+            }
+           
         }
 
         .bg {
@@ -134,7 +189,7 @@
         }
 
         .shadowb {
-            margin-top: 20rpx;
+            // margin-top: 016rpx;
             box-shadow: 5px 5px 20px #dfe4e7;
         }
     }

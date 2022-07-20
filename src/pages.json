@@ -158,7 +158,7 @@
 		{
 			"path": "pages/accumulatePoints/index",
 			"style": {
-				"navigationBarTitleText": "身价积分",
+				"navigationBarTitleText": "身价分",
 				"navigationBarBackgroundColor": "#fff",
 				"navigationBarTextStyle": "black"
 			}
@@ -198,12 +198,6 @@
 			}
 		},
 		{
-			"path": "pages/index-new/index",
-			"style": {
-				"navigationBarTitleText": "首页"
-			}
-		},
-		{
 			"path": "pages/wode/index",
 			"style": {
 				"navigationBarTitleText": "我的"
@@ -237,6 +231,12 @@
 			"path": "pages/userScoreRecords/index",
 			"style": {
 				"navigationBarTitleText": "评估记录"
+			}
+		},
+		{
+			"path": "pages/OrderList/index",
+			"style": {
+				"navigationBarTitleText": "订单列表"
 			}
 		}
 	],

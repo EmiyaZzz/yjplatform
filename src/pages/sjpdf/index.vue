@@ -17,7 +17,10 @@
           邮件发送
         </view>
         <view class="pdf-btn" @click="toBuy()" v-if="!buyComplete">
-          购买(1积分)
+          认领
+        </view>
+        <view class="pdf-btn" @click="toBuy()" v-if="isExpired == '1'">
+          认领
         </view>
       </view>
       <view class="pdf-btn" @click="backtoRep()">
@@ -37,6 +40,8 @@ import {
   reportOrder,
   reportSend,
   userInfo,
+  reportDetail,
+  reportView
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
@@ -62,21 +67,32 @@ export default Vue.extend({
       commodityId: '',
       buyComplete: false,
       payStatus: 0,
+      isExpired: 0,
       reportType: 0,
       imgBgTop: this.$OSS_IMAGES_URL + '/20220617/bg-top.jpg',
     }
   },
   onLoad: function (options) {
     console.log(options)
-    this.pdfurl = options.data
+
+    // this.pdfurl = options.data
     this.commodityId = options.commodityId
-    this.payStatus = options.payStatus
+    // console.log(this.commodityId)
+    // this.payStatus = options.payStatus
     this.reportType = options.reportType
-    if (this.payStatus == 1) {
-      this.buyComplete = true
-    } else {
-      this.buyComplete = false
-    }
+
+    reportDetail({ commodityId: this.commodityId }).then((result) => {
+      console.log(result)
+      this.payStatus = result.payStatus
+      this.isExpired = result.isExpired
+
+      if (this.payStatus == '1') {
+        this.buyComplete = true
+      } else {
+        this.buyComplete = false
+      }
+    })
+
     userInfo().then((res) => {
       this.emailS = res.email
     })
@@ -94,12 +110,22 @@ export default Vue.extend({
       this.$changePage("pages/sjreport/index");
     },
     toView() {
-      this.$changePage({
-        params: {
-          data: this.pdfurl,
-        },
-        url: 'pages/pdfView/index'
+      reportView(
+        {
+          payType: this.payStatus,
+          reportType: this.reportType
+        }
+      ).then((res) => {
+        this.pdfurl = res
+        this.$changePage({
+          params: {
+            data: this.pdfurl,
+          },
+          url: 'pages/pdfView/index'
+        })
+
       })
+
     },
     //这里的 url 就是pdf文件的路径，直接调用此方法就可以打开pdf文件
     openReport(url) {
@@ -141,18 +167,36 @@ export default Vue.extend({
       this.identity = data.value
     },
     toBuy() {
-      reportOrder(
-        {
-          commodityId: this.commodityId,
-          payWay: "0"
+      let that = this
+      uni.showModal({
+        title: '支付',
+        content: '即将花费10积分',
+        success: function (res) {
+          if (res.confirm) {
+            // console.log(ddId);
+            reportOrder(
+              {
+                commodityId: that.commodityId,
+                payWay: "0"
+              }
+            ).then((res) => {
+              // this.$toast(res)
+              uni.showToast({
+                title: res,
+                icon: "none"
+              })
+              that.buyComplete = true
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+          }
         }
-      ).then((res) => {
-        console.log(res);
-        this.$toast(res)
-        this.buyComplete = true
-      }).catch((err) => {
-        console.log(err.message);
-      })
+      });
+
+    },
+    setSatus() {
+      this.buyComplete = true
+      console.log(this.buyComplete);
     },
     toSend() {
       reportSend(

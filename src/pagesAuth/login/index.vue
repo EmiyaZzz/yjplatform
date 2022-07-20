@@ -61,7 +61,7 @@
             placeholder="请输入密码"
           />
         </view>
-        <rcyj-button @click="login" bgColor="#f2f1f6">
+        <rcyj-button @click="login" bgColor='linear-gradient(90deg, #3977f6 0%, #7ebafa 100%)' textColor="#fff">
           登录
         </rcyj-button>
         <view class="inlet at-row align-center space-between">

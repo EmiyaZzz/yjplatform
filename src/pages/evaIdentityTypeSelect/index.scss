@@ -23,7 +23,7 @@
             .data-form-content {
                 background-color: #fff;
                 border-radius: 10rpx;
-                padding: 10rpx 40rpx;
+                padding: 40rpx 40rpx;
 
                 .check-radio-img {
                     width: 35rpx;
@@ -37,6 +37,81 @@
                         color: #21BA80;
                     }
                 }
+
+                .box-content {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+
+                    .box {
+                        margin-bottom: 30rpx;
+                        height: 130rpx;
+                        width: 300rpx;
+                        // background-color: red;
+                        box-shadow: 5rpx 5rpx 5rpx #dfe4e7, -5rpx -5rpx 5rpx rgba(235, 235, 235, 0.4);
+                        border-radius: 20rpx;
+              
+
+                        background-color: #fff;
+                        .img-con {
+                            width: 198rpx;
+                            height: 120rpx;
+                            margin-bottom: 10rpx;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                        .select-mark{
+                            height: 10rpx;
+                            width: 100rpx;
+                            background-color: blue;
+                            // border-radius: 100rpx;
+                        }
+                    }
+                    .items{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20rpx;
+                        // border: 2rpx solid rgba(44, 108, 237, 0.8);
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        padding-left: 20rpx;
+                        // flex-direction: column;
+                        .img-con{
+                            width: 70rpx;
+                            height: 70rpx;
+                            .itemlabel{
+                                
+                            }
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                    .itemsborder{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20rpx;
+                        border: 2rpx solid rgba(44, 108, 237, 0.8);
+                        display: flex;
+                        justify-content: left;
+                        align-items: center;
+                        // flex-direction: column;
+                        .img-con{
+                            width: 70rpx;
+                            height: 70rpx;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+
             }
 
             .in-box {
@@ -120,8 +195,8 @@
         }
 
         .tips {
-            margin-top: 50rpx;
-            padding-bottom: 50rpx;
+            margin-top: 30rpx;
+            padding-bottom: 30rpx;
             font-size: 26rpx;
             color: #9094a0;
             text-align: left;

@@ -9,40 +9,22 @@
         <view class="box-panel">
           <view class="data-form-content">
             <view class="title">未转化原创科技成果</view>
-            <view
-              :style="{ 'margin-bottom': '80rpx' }"
-              v-for="(item, index) in dataTech"
-              :key="index"
-            >
-              <view
-                :style="{ 'text-align': 'right', color: '#9094A0' }"
-                @click="deleteItem1(item)"
-                >删除</view
-              >
+            <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataTech" :key="index">
+              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input
-                    v-model="item.technologicalAchievementName"
-                    maxlength="20"
-                    placeholder-style="color:#9094A0;font-size:30rpx"
-                    :clearable="false"
-                    :custom-style="uInputStyle"
-                    placeholder="请输入名称"
-                  />
+                  <u-input v-model="item.technologicalAchievementName" maxlength="20"
+                    placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                    placeholder="请输入名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input
-                    v-model="item.technologicalAchievementDes"
-                    maxlength="30"
-                    placeholder-style="color:#9094A0;font-size:30rpx"
-                    :clearable="false"
-                    :custom-style="uInputStyle"
-                    placeholder="请输入描述"
-                  />
+                  <u-input v-model="item.technologicalAchievementDes" maxlength="30"
+                    placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                    placeholder="请输入描述" />
                 </view>
               </view>
             </view>
@@ -51,49 +33,29 @@
             </view>
 
             <view class="title">已转化原创科技成果</view>
-            <view
-              :style="{ 'margin-bottom': '80rpx' }"
-              v-for="(item, index) in dataTeched"
-              :key="index"
-            >
-              <view
-                :style="{ 'text-align': 'right', color: '#9094A0' }"
-                @click="deleteItem2(item)"
-                >删除</view
-              >
+            <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataTeched" :key="index">
+              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem2(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input
-                    v-model="item.technologicalAchievementName"
-                    maxlength="20"
-                    placeholder-style="color:#9094A0;font-size:30rpx"
-                    :clearable="false"
-                    :custom-style="uInputStyle"
-                    placeholder="请输入名称"
-                  />
+                  <u-input v-model="item.technologicalAchievementName" maxlength="20"
+                    placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                    placeholder="请输入名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input
-                    v-model="item.technologicalAchievementDes"
-                    maxlength="30"
-                    placeholder-style="color:#9094A0;font-size:30rpx"
-                    :clearable="false"
-                    :custom-style="uInputStyle"
-                    placeholder="请输入描述"
-                  />
+                  <u-input v-model="item.technologicalAchievementDes" maxlength="30"
+                    placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                    placeholder="请输入描述" />
                 </view>
               </view>
             </view>
             <view class="addbtn">
               <img :src="imgArrow" alt="" @click="additemEd()" />
             </view>
-            <view class="tips"
-              >*请确保填写信息的真实性，否则会影响评估结果和信用</view
-            >
+            <view class="tips">*请确保填写信息的真实性，否则会影响评估结果和信用</view>
           </view>
           <view class="btn-wrap">
             <view class="btn1" @click="pageBack()">上一页</view>
@@ -107,8 +69,9 @@
 </template>
 <script>
 import Vue from "vue";
-import { techList, techAdd, techUpdate, techDelete } from "@/api/common.js";
+import { techList, techAdd, techUpdate, techDelete, precisoEvaluate } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
+import { showScore } from '@/utils/utils'
 const config = require("@/config/index");
 export default Vue.extend({
   components: {
@@ -144,7 +107,7 @@ export default Vue.extend({
       imgArrow: this.$OSS_IMAGES_URL + "/20220617/arror.png",
     };
   },
-  onLoad() {},
+  onLoad() { },
   onShow() {
     // let dictType = 'identity'
     this.init();
@@ -170,14 +133,18 @@ export default Vue.extend({
           });
           // this.userId = result.id
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     getIdentity(data) {
       this.identity = data.value;
     },
-    saveData() {
+    saveDataAndJump(url) {
       const { userId, dataTech, dataTeched } = this;
 
+     if (dataTech.length == 0) {
+       this.evaData(url)
+        return
+      }
       for (let i = 0; i < this.dataTech.length; i++) {
         let params = {
           technologicalAchievementType: "2",
@@ -190,9 +157,9 @@ export default Vue.extend({
           const data = Object.assign({}, params, {
             id: dataTech[i].id,
           });
-          techUpdate(data).then((result) => {});
+          techUpdate(data).then((result) => { this.evaData(url) });
         } else {
-          techAdd(params).then((result) => {});
+          techAdd(params).then((result) => { this.evaData(url) });
         }
       }
       for (let i = 0; i < dataTeched.length; i++) {
@@ -208,9 +175,9 @@ export default Vue.extend({
           const data = Object.assign({}, params, {
             id: dataTeched[i].id,
           });
-          techUpdate(data).then((result) => {});
+          techUpdate(data).then((result) => { this.evaData(url) });
         } else {
-          techAdd(params).then((result) => {});
+          techAdd(params).then((result) => { this.evaData(url) });
         }
       }
     },
@@ -222,72 +189,94 @@ export default Vue.extend({
         url: "pages/evaIntellectual/index",
       });
     },
-    evaluateSj() {
-      this.saveData();
-      this.$changePage({
-        params: {
-          data: this.identity,
-        },
-        url: "pages/evaContribute/index",
-      });
-      //  wx.switchTab({
-      //   url:'../evaEducation/index'
+    evaData(url)
+    {
+    precisoEvaluate().then((res) => {
+       showScore(res,1500)
+      // uni.showToast({
+      //   icon: 'none',
+      //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+      //   duration: 1500
       // })
-    },
-    exitAndSave() {
-      this.saveData();
-      wx.switchTab({
-        url: "../index/index",
-      });
-    },
-    additem() {
-      this.dataTech.push({
-        index: "",
-        technologicalAchievementType: "",
-        technologicalAchievementName: "",
-        patentNum: "",
-        technologicalAchievementDes: "",
-      });
-      for (let i = 0; i < this.dataTech.length; i++) {
-        this.dataTech[i].index = i;
-      }
-    },
-    additemEd() {
-      this.dataTeched.push({
-        index: "",
-        technologicalAchievementType: "",
-        technologicalAchievementName: "",
-        patentNum: "",
-        technologicalAchievementDes: "",
-      });
-      for (let i = 0; i < this.dataTeched.length; i++) {
-        this.dataTeched[i].index = i;
-      }
-    },
-    deleteItem1(item) {
-      if (!item.id) this.dataTech.splice(item.index, 1);
-      else {
-        const ids = [];
-        ids.push(item.id);
-        techDelete({
-          ids: ids.join(","),
-        }).then((result) => {
-          this.init();
+      setTimeout(() => {
+        this.$changePage({
+          params: {
+            data: this.identity,
+          },
+          url: url//"pages/evaContribute/index",
         });
-      }
+      }, 1500);
+    });
+  },
+  evaluateSj() {
+  this.saveDataAndJump("pages/evaContribute/index");
+  //  wx.switchTab({
+  //   url:'../evaEducation/index'
+  // })
+},
+  exitAndSave() {
+  this.saveDataAndJump(0);
+  // precisoEvaluate().then((res) => {
+  //   uni.showToast({
+  //     icon: 'none',
+  //     title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+  //     duration: 1500
+  //   })
+  //   setTimeout(() => {
+  //     wx.switchTab({
+  //       url: "../index/index",
+  //     });
+  //   }, 1500);
+  // });
+},
+  additem() {
+    this.dataTech.push({
+      index: "",
+      technologicalAchievementType: "",
+      technologicalAchievementName: "",
+      patentNum: "",
+      technologicalAchievementDes: "",
+    });
+    for(let i = 0; i< this.dataTech.length; i++) {
+  this.dataTech[i].index = i;
+}
     },
-    deleteItem2(item) {
-      if (!item.id) this.dataTeched.splice(item.index, 1);
-      else {
-        const ids = [];
-        ids.push(item.id);
-        techDelete({
-          ids: ids.join(","),
-        }).then((result) => {
-          this.init();
-        });
-      }
-    },
+additemEd() {
+  this.dataTeched.push({
+    index: "",
+    technologicalAchievementType: "",
+    technologicalAchievementName: "",
+    patentNum: "",
+    technologicalAchievementDes: "",
+  });
+  for (let i = 0; i < this.dataTeched.length; i++) {
+    this.dataTeched[i].index = i;
+  }
+},
+deleteItem1(item) {
+  if (!item.id) this.dataTech.splice(item.index, 1);
+  else {
+    const ids = [];
+    ids.push(item.id);
+    techDelete({
+      ids: ids.join(","),
+    }).then((result) => {
+      this.init();
+    });
+  }
+},
+deleteItem2(item) {
+  if (!item.id) this.dataTeched.splice(item.index, 1);
+  else {
+    const ids = [];
+    ids.push(item.id);
+    techDelete({
+      ids: ids.join(","),
+    }).then((result) => {
+      this.init();
+    });
+  }
+},
   },
 });
 </script>

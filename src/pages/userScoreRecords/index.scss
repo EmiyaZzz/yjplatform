@@ -4,10 +4,10 @@
 
     .body {
         width: 100%;
-        padding: 0 30rpx;
+        padding: 0 20rpx;
         position: relative;
         z-index: 2;
-        padding-top: 20rpx;
+        padding-top: 16rpx;
 
         .tips {
             margin-top: 20rpx;
@@ -19,8 +19,7 @@
 
         .box1 {
             border-radius: 10rpx;
-            margin-top: 10rpx;
-            margin-bottom: 30rpx;
+            // margin-top: 10rpx;
             // background-color: blue;        
 
          
@@ -45,8 +44,33 @@
             }
 
             .content-panel {
-                margin: 30rpx 30rpx;
+                margin: 16rpx 30rpx;
 
+                
+                .dataTable{
+                  padding: 10rpx;
+                  width: 100%;
+                  height: 100%;
+                  &-canvas {
+                    &-title {
+                      padding: 20rpx 0rpx;
+                      > text {
+                        padding-left: 20rpx;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 32rpx;
+                        font-weight: 550;
+                        line-height: 32rpx;
+                        border-left: 10rpx solid #28b5b1;
+                      }
+                    }
+                    #myEcharts {
+                      width: 100%;
+                      height: 600rpx;
+                    }
+                  }
+                }
+                
                 .cbtn {
                     width: 264rpx;
                     height: 100rpx;
@@ -172,7 +196,7 @@
         }
 
         .shadowb {
-            margin-top: 20rpx;
+            margin-top: 16rpx;
             box-shadow: 5px 5px 20px #dfe4e7;
         }
     }

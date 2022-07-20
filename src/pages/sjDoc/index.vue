@@ -101,19 +101,24 @@
           </view>
           <view class="doc-panel">
             <view>知识产权:</view>
-            <view v-html="docDetail.zscq"></view>
+            <view class="muti" v-html="zscq"></view>
+            <!-- <textarea v-html="zscq" maxlength="200" placeholder-style="color:#9094A0" placeholder=""
+              :custom-style="uInputStyleLeft" /> -->
+
           </view>
           <view class="doc-panel">
             <view>科技成果:</view>
-            <view v-html="docDetail.kjcg"></view>
+            <view class="muti" v-html="kjcg"></view>
+                   <!-- <textarea v-html="zscq" maxlength="200" placeholder-style="color:#9094A0" placeholder=""
+              :custom-style="uInputStyleLeft" /> -->
           </view>
           <view class="doc-panel">
             <view>成就贡献:</view>
-            <view v-html="docDetail.cjgx"></view>
+            <view v-html="cjgx"></view>
           </view>
           <view class="doc-panel">
             <view>荣誉称号:</view>
-            <view v-html="docDetail.rych "></view>
+            <view v-html="rych"></view>
           </view>
           <view class="doc-panel">
             <view>社会职务:</view>
@@ -148,15 +153,15 @@
             <view>{{ docDetail.dp }}</view>
           </view>
           <view class="doc-panel">
-            <view>社保缴纳情况:</view>
+            <view>上年度社保缴纳情况:</view>
             <view>{{ docDetail.sbjn }}</view>
           </view>
           <view class="doc-panel">
-            <view>社保使用情况:</view>
+            <view>上年度社保使用情况:</view>
             <view>{{ docDetail.sbsy }}</view>
           </view>
           <view class="doc-panel">
-            <view>个人所得税:</view>
+            <view>上年度个人所得税缴纳情况:</view>
             <view>{{ docDetail.sds }}</view>
           </view>
           <!-- <view class="doc-panel">
@@ -205,16 +210,16 @@
           </view>
           <view class="doc-panel">
             <view>补充信息:</view>
-            <view>{{ docDetail.bcxx }}</view>
+            <view class="muti" v-html="bcxx"></view>
           </view>
-          <view class="doc-panel">
+          <!-- <view class="doc-panel">
             <view>联系人姓名:</view>
             <view>{{ docDetail.lxr }}</view>
-          </view>
-          <view class="doc-panel">
+          </view> -->
+          <!-- <view class="doc-panel">
             <view>证明人姓名:</view>
             <view>{{ docDetail.zmr }}</view>
-          </view>
+          </view> -->
         </view>
       </view>
     </view>
@@ -235,6 +240,16 @@ export default Vue.extend({
       docDetail: "",
       avator: "",
       complexScore: "",
+      zscq: '',
+      kjcg: '',
+      cjgx: '',
+      rych: '',
+      bcxx: '',
+      uInputStyleLeft: {
+        color: '#black',
+        fontSize: '28rpx',
+        textAlign: 'left'
+      },
     };
   },
   methods: {
@@ -249,6 +264,11 @@ export default Vue.extend({
     });
     sjDocDetail().then((res) => {
       this.docDetail = res;
+      this.zscq = res.zscq.replaceAll('/n', '<br/>');
+      this.kjcg = res.kjcg.replaceAll('/n', '<br/>');
+      this.cjgx = res.cjgx.replaceAll('/n', '<br/>');
+      this.rych = res.rych.replaceAll('/n', '<br/>');
+      this.bcxx = res.bcxx.replaceAll('/n', '<br/>');
     });
     userScore().then((data) => {
       if (!data) return;
@@ -259,5 +279,5 @@ export default Vue.extend({
 });
 </script>
    <style lang="scss">
-@import "./index.scss";
-</style>
+   @import "./index.scss";
+   </style>

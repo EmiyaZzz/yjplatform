@@ -36,7 +36,12 @@
               </view> -->
               <view>
                 <view class="select-group at-row align-center space-between" @click="$refs.birthday.isShow = true">
-                  {{ birthday }}
+               <view v-if="birthday">
+                {{ birthday }}
+               </view>  
+               <view v-else>
+                请选择
+               </view> 
                 </view>
               </view>
             </view>
@@ -58,7 +63,12 @@
               <view>
                 <view class="select-group at-row align-center space-between"
                   @click="$refs.graduacionTime.isShow = true">
+                <view v-if="graduacionTime">
                   {{ graduacionTime }}
+                </view>  
+                <view v-else>
+                  请选择
+                </view>
                 </view>
               </view>
             </view>
@@ -172,12 +182,12 @@ export default Vue.extend({
         value: '0',
         label: '男'
       },
-      birthday: '请选择',
+      birthday: '',
       educationS: {
         value: '5',
         label: '博士研究生'
       },
-      graduacionTime: '请选择',
+      graduacionTime: '',
       positionS: {
         value: '1',
         label: '基层'
@@ -226,6 +236,14 @@ export default Vue.extend({
         this.$toast('请选择出生日期')
         return
       }
+      //  if (this.graduacionTime=='请选择') {
+      //   this.$toast('请选择毕业时间')
+      //   return
+      // }
+      //    if (this.positionS) {
+      //   this.$toast('请选择职务')
+      //   return
+      // }
       const params = {
         "birthday": birthday,
         "education": educationS.value,
@@ -234,6 +252,7 @@ export default Vue.extend({
         "sex": sexS.value,
         "userName": userName
       }
+
       console.log(params)
       fastSearch(params).then((data) => {
         console.log(data)
@@ -250,7 +269,7 @@ export default Vue.extend({
         }).then(() => {
           uni.showToast({
             icon: 'none',
-            title: `恭喜您完成快速评估，奖励您5个身价积分`,
+            title: `恭喜您完成快速评估，奖励您5个身价分`,
             duration: 3000
           })
           setTimeout(() => {

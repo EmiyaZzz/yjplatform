@@ -175,13 +175,15 @@ import {
   societypostUpdate,
   queryDictDataByType,
   queryHighArea,
-  upload
+  upload,
+  precisoEvaluate
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
 import FunPop from '../components/fun-pop/fun-pop.vue'
 import RcyjIcon from '../../components/rcyj-icon/rcyj-icon.vue'
 import RcjyInput from '../../components/rcyj-input/rcjy-input.vue'
+import { showScore } from '@/utils/utils'
 const config = require('@/config/index')
 export default Vue.extend({
   components: {
@@ -345,7 +347,7 @@ export default Vue.extend({
       this.isDdb = result[0]
     },
     exitAndSave() {
-
+      this.checkIs()
       const {
         userId,
         societyPostLevelS,
@@ -355,7 +357,11 @@ export default Vue.extend({
         rdLevelS,
         rdName,
         ddbLevelS,
-        ddbName
+        ddbName,
+        isSocietyPost,
+        isZx,
+        isRd,
+        isDdb
       } = this
       const params = {
         "id": userId,
@@ -367,6 +373,10 @@ export default Vue.extend({
         "rdName": rdName,
         "ddbLevel": ddbLevelS.value,
         "ddbName": ddbName,
+        "isSocietyPost": isSocietyPost.value,
+        "isZxwy": isZx.value,
+        "isRd": isRd.value,
+        "isDdb": isDdb.value
       }
       console.log(params)
       societypostUpdate(params).then((data) => {
@@ -376,14 +386,24 @@ export default Vue.extend({
         //   // },
         //   url: '/pages/evaAdditional/index'
         // })
-        wx.switchTab({
-          url: '../index/index'
-        })
+        precisoEvaluate().then((res) => {
+           showScore(res,1500)
+          // uni.showToast({
+          //   icon: 'none',
+          //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+          //   duration: 1500
+          // })
+          setTimeout(() => {
+            wx.switchTab({
+              url: "../index/index",
+            });
+          }, 1500);
+        });
       }).catch((err) => {
 
       });
     },
-     pageBack() {
+    pageBack() {
       this.$changePage({
         params: {
           data: this.identity,
@@ -391,7 +411,26 @@ export default Vue.extend({
         url: "pages/evaHonor/index",
       });
     },
+    checkIs() {
+      if (this.isSocietyPost == '0') {
+        this.societyPostLevelS = [],
+          this.societyPostName = ''
+      }
+      if (this.isZx == '0') {
+        this.zxwyLevelS = [],
+          this.zxwyName = ''
+      }
+      if (this.isRd == '0') {
+        this.rdLevelS = [],
+          this.rdName = ''
+      }
+      if (this.isDdb == '0') {
+        this.ddbLevelS = [],
+          this.ddbName = ''
+      }
+    },
     evaluateSj() {
+      this.checkIs()
       const {
         userId,
         societyPostLevelS,
@@ -401,7 +440,11 @@ export default Vue.extend({
         rdLevelS,
         rdName,
         ddbLevelS,
-        ddbName
+        ddbName,
+        isSocietyPost,
+        isZx,
+        isRd,
+        isDdb
       } = this
       const params = {
         "id": userId,
@@ -413,15 +456,30 @@ export default Vue.extend({
         "rdName": rdName,
         "ddbLevel": ddbLevelS.value,
         "ddbName": ddbName,
+        "isSocietyPost": isSocietyPost.value,
+        "isZxwy": isZx.value,
+        "isRd": isRd.value,
+        "isDdb": isDdb.value
       }
       // 
       societypostUpdate(params).then((data) => {
-        this.$changePage({
-          params: {
-            // data: this.identityTypeS
-          },
-          url: 'pages/evaAdditional/index'
-        })
+        precisoEvaluate().then((res) => {
+           showScore(res,1500)
+          // uni.showToast({
+          //   icon: 'none',
+          //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+          //   duration: 1500
+          // })
+          setTimeout(() => {
+            this.$changePage({
+              params: {
+                data: this.identity,
+              },
+              url: "pages/evaAdditional/index",
+            });
+          }, 1500);
+        });
+
         //  wx.switchTab({ 
         //   url:'../index/index'
         // })

@@ -41,3 +41,14 @@ export function formatterDate (date) {
   const d = date ? new Date(date) : new Date()
   return d.getFullYear() + '年' + formatNumber(d.getMonth() + 1) + '月' + formatNumber(d.getDate()) + '日' + ' ' + formatNumber(d.getHours()) + ':' + formatNumber(d.getMinutes())
 }
+
+
+// 分数变动提示窗口
+export function showScore (res,n) {
+  uni.showToast({
+    icon: 'none',
+    title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + Math.abs(res) + '万',
+    duration: n
+  })
+  return n
+}

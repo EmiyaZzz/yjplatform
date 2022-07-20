@@ -8,16 +8,10 @@
         <top-info @getIdentityInfo="getIdentity" />
         <view class="box-panel">
           <view class="data-form-content">
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="identity == '1'"
-            >
+            <view class="in-box at-row align-center space-between" v-if="identity == '1'">
               <view class="in-label"> 职务 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.postPSSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.postPSSelect.isShow = true">
                   <view v-if="postPS.label">{{ postPS.label }}</view>
                   <view v-else>请选择</view>
                 </view>
@@ -26,23 +20,14 @@
             <view class="in-box at-row align-center space-between" v-else>
               <view class="in-label"> 职务 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input
-                  v-model="postPI"
-                  maxlength="20"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入职务"
-                />
+                <u-input v-model="postPI" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入职务" />
               </view>
             </view>
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 职级 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.postRankSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.postRankSelect.isShow = true">
                   <view v-if="postRankS.label">{{ postRankS.label }}</view>
                   <view v-else>请选择</view>
                 </view>
@@ -51,37 +36,22 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 技术职称 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.technicalTitlesLevelSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.technicalTitlesLevelSelect.isShow = true">
                   <view v-if="technicalTitlesLevelS.label">{{
-                    technicalTitlesLevelS.label
+                      technicalTitlesLevelS.label
                   }}</view>
                   <view v-else>请选择</view>
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="technicalTitlesLevelS"
-            >
+            <view class="in-box at-row align-center space-between" v-if="technicalTitlesLevelS&&technicalTitlesLevelS.value!='6'">
               <view class="in-label"> 技术职称名称 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input
-                  v-model="technicalTitlesName"
-                  maxlength="20"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入技术职称名称"
-                />
+                <u-input v-model="technicalTitlesName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入技术职称名称" />
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="technicalTitlesLevelS"
-            >
+            <view class="in-box at-row align-center space-between" v-if="technicalTitlesLevelS&&technicalTitlesLevelS.value!='6'">
               <view class="in-label"> 技术职称证书 </view>
               <view class="select-group">
                 <view class="register-paper-box">
@@ -96,41 +66,25 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 职业资格 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="
-                    $refs.vocationalQualificationLevelSelect.isShow = true
-                  "
-                >
+                <view class="select-group" @click="
+                  $refs.vocationalQualificationLevelSelect.isShow = true
+                ">
                   <view v-if="vocationalQualificationLevelS.label">
                     {{ vocationalQualificationLevelS.label }}
                   </view>
-                  <view v-if="!vocationalQualificationLevelS.label"
-                    >请选择</view
-                  >
+                  <view v-if="!vocationalQualificationLevelS.label">请选择</view>
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="vocationalQualificationLevelS"
-            >
+            <view class="in-box at-row align-center space-between" v-if="vocationalQualificationLevelS&&vocationalQualificationLevelS.value!='6'">
               <view class="in-label"> 职业资格名称 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input
-                  v-model="vocationalQualificationName"
-                  maxlength="20"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入职业资格名称"
-                />
+                <u-input v-model="vocationalQualificationName" maxlength="20"
+                  placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                  placeholder="请输入职业资格名称" />
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="vocationalQualificationLevelS"
-            >
+            <view class="in-box at-row align-center space-between" v-if="vocationalQualificationLevelS&&vocationalQualificationLevelS.value!='6'">
               <view class="in-label"> 职业资格证书 </view>
               <view class="select-group">
                 <view class="register-paper-box">
@@ -143,35 +97,19 @@
               </view>
             </view>
 
-            <view class="tips"
-              >*请确保填写信息的真实性，否则会影响评估结果和信用</view
-            >
+            <view class="tips">*请确保填写信息的真实性，否则会影响评估结果和信用</view>
           </view>
           <view class="btn-wrap">
             <view class="btn1" @click="pageBack()">上一页</view>
             <view class="btn1" @click="evaluateSj()">下一页</view>
             <view class="btn1" @click="exitAndSave()">保存退出</view>
           </view>
-          <rcyj-picker-single
-            ref="postRankSelect"
-            :list="postRankList"
-            @confirm="postRankConfirm"
-          />
-          <rcyj-picker-single
-            ref="postPSSelect"
-            :list="postPList"
-            @confirm="postPConfirm"
-          />
-          <rcyj-picker-single
-            ref="technicalTitlesLevelSelect"
-            :list="technicalTitlesLevelList"
-            @confirm="technicalTitlesLevelListConfirm"
-          />
-          <rcyj-picker-single
-            ref="vocationalQualificationLevelSelect"
-            :list="vocationalQualificationLevelList"
-            @confirm="vocationalQualificationLevelConfirm"
-          />
+          <rcyj-picker-single ref="postRankSelect" :list="postRankList" @confirm="postRankConfirm" />
+          <rcyj-picker-single ref="postPSSelect" :list="postPList" @confirm="postPConfirm" />
+          <rcyj-picker-single ref="technicalTitlesLevelSelect" :list="technicalTitlesLevelList"
+            @confirm="technicalTitlesLevelListConfirm" />
+          <rcyj-picker-single ref="vocationalQualificationLevelSelect" :list="vocationalQualificationLevelList"
+            @confirm="vocationalQualificationLevelConfirm" />
         </view>
       </view>
     </view>
@@ -185,12 +123,14 @@ import {
   queryDictDataByType,
   queryHighArea,
   upload,
+  precisoEvaluate
 } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 import MinePop from "../components/mine-pop/mine-pop.vue";
 import FunPop from "../components/fun-pop/fun-pop.vue";
 import RcyjIcon from "../../components/rcyj-icon/rcyj-icon.vue";
 import RcjyInput from "../../components/rcyj-input/rcjy-input.vue";
+import { showScore } from '@/utils/utils'
 const config = require("@/config/index");
 export default Vue.extend({
   components: {
@@ -235,7 +175,7 @@ export default Vue.extend({
       major: "", //所学专业
     };
   },
-  onLoad() {},
+  onLoad() { },
   onShow() {
     // let dictType = 'identity'
   },
@@ -433,11 +373,21 @@ export default Vue.extend({
           this.postPS = "";
           this.postPI = "";
 
-          wx.switchTab({
-            url: "../index/index",
+          precisoEvaluate().then((res) => {
+             showScore(res,1500)
+            // uni.showToast({
+            //   icon: 'none',
+            //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+            //   duration: 1500
+            // })
+            setTimeout(() => {
+              wx.switchTab({
+                url: "../index/index",
+              });
+            }, 1500);
           });
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     async openSheetTec(type) {
       const params = {
@@ -537,15 +487,28 @@ export default Vue.extend({
         .then((data) => {
           this.postPS = "";
           this.postPI = "";
-          this.$changePage({
-            params: {},
-            url: "/pages/evaIntellectual/index",
+          precisoEvaluate().then((res) => {
+             showScore(res,1500)
+            // uni.showToast({
+            //   icon: 'none',
+            //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+            //   duration: 1500
+            // })
+            setTimeout(() => {
+              this.$changePage({
+                params: {
+                  data: this.identity,
+                },
+                url: "pages/evaIntellectual/index",
+              });
+            }, 1500);
           });
+
           //  wx.switchTab({
           //   url:'../index/index'
           // })
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
   },
 });

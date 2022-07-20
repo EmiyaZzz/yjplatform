@@ -11,13 +11,9 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 第一学历 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.educationFSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.educationFSelect.isShow = true">
                   <view v-if="educationSelectSF.label">
-                    {{ educationSelectSF.label }}</view
-                  >
+                    {{ educationSelectSF.label }}</view>
                   <view v-else>请选择</view>
                 </view>
               </view>
@@ -25,21 +21,14 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 最高学历 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.educationSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.educationSelect.isShow = true">
                   <view v-if="educationSelectS.label">
-                    {{ educationSelectS.label }}</view
-                  >
+                    {{ educationSelectS.label }}</view>
                   <view v-else>请选择</view>
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="degreeS.value == 0"
-            >
+            <view class="in-box at-row align-center space-between" v-if="degreeS.value == 0">
               <view class="in-label"> 学历证上传 </view>
               <view class="select-group">
                 <view class="register-paper-box">
@@ -51,16 +40,10 @@
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="educationSelectS.value > 2"
-            >
+            <view class="in-box at-row align-center space-between" v-if="educationSelectS.value > 2">
               <view class="in-label"> 是否取得学位 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.degreeSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.degreeSelect.isShow = true">
                   <view v-if="degreeS.label">
                     {{ degreeS.label }}
                   </view>
@@ -68,20 +51,14 @@
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="degreeS.value == 0"
-            >
+            <view class="in-box at-row align-center space-between" v-if="degreeS.value == 0">
               <view class="in-label"> 学位名称 </view>
               <!-- <view class="felx-group at-row align-center space-between">
                 <u-input v-model="degreeName" maxlength="11" placeholder-style="color:#9094A0;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="请输入学位名称" />
               </view> -->
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.degreeNameSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.degreeNameSelect.isShow = true">
                   <view v-if="degreeNameS.label">
                     {{ degreeNameS.label }}
                   </view>
@@ -89,10 +66,7 @@
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="degreeS.value == 0"
-            >
+            <view class="in-box at-row align-center space-between" v-if="degreeS.value == 0">
               <view class="in-label"> 学位证上传 </view>
               <view class="select-group">
                 <view class="register-paper-box">
@@ -107,23 +81,14 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 所学专业 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input
-                  v-model="major"
-                  maxlength="20"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入所学专业"
-                />
+                <u-input v-model="major" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入所学专业" />
               </view>
             </view>
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 毕业时间 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.graduacionTime.isShow = true"
-                >
+                <view class="select-group" @click="$refs.graduacionTime.isShow = true">
                   <view v-if="graduacionTime">
                     {{ graduacionTime }}
                   </view>
@@ -134,45 +99,26 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 毕业院校 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.graduatedSchoolTypeSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.graduatedSchoolTypeSelect.isShow = true">
                   <view v-if="graduatedSchoolTypeS.label">
-                    {{ graduatedSchoolTypeS.label }}</view
-                  >
+                    {{ graduatedSchoolTypeS.label }}</view>
                   <view v-else>请选择</view>
                 </view>
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 1"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 1">
               <view class="in-label"> 院校名称 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input
-                  v-model="graduatedSchool"
-                  maxlength="18"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入院校名称"
-                />
+                <u-input v-model="graduatedSchool" maxlength="18" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入院校名称" />
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 1"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 1">
               <view class="in-label"> 办学层次 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.schoolLevelSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.schoolLevelSelect.isShow = true">
                   <view v-if="schoolLevelS.label">
                     {{ schoolLevelS.label }}
                   </view>
@@ -180,16 +126,10 @@
                 </view>
               </view>
             </view>
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 1"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 1">
               <view class="in-label"> 教育性质 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.educationalNatureSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.educationalNatureSelect.isShow = true">
                   <view v-if="educationalNatureS.label">
                     {{ educationalNatureS.label }}
                   </view>
@@ -198,50 +138,27 @@
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 2"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 2">
               <view class="in-label"> 国别 </view>
               <view class="felx-group at-row align-center space-between">
-                <u-input
-                  v-model="country"
-                  maxlength="20"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入学校所属国别"
-                />
+                <u-input v-model="country" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入学校所属国别" />
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 2"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 2">
               <view class="in-label"> 院校名称 </view>
               <view class="felx-group at-row align-center space-between">
-                <u-input
-                  v-model="graduatedSchoolForeignName"
-                  maxlength="18"
-                  placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false"
-                  :custom-style="uInputStyle"
-                  placeholder="请输入国外院校名称"
-                />
+                <u-input v-model="graduatedSchoolForeignName" maxlength="18"
+                  placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                  placeholder="请输入国外院校名称" />
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 2"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 2">
               <view class="in-label"> 院校本国排名 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.rankCountrySelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.rankCountrySelect.isShow = true">
                   <view v-if="rankCountryS.label">
                     {{ rankCountryS.label }}
                   </view>
@@ -250,76 +167,35 @@
               </view>
             </view>
 
-            <view
-              class="in-box at-row align-center space-between"
-              v-if="graduatedSchoolTypeS.value == 2"
-            >
+            <view class="in-box at-row align-center space-between" v-if="graduatedSchoolTypeS.value == 2">
               <view class="in-label"> 院校国际排名 </view>
               <view>
-                <view
-                  class="select-group"
-                  @click="$refs.rankInternationalSelect.isShow = true"
-                >
+                <view class="select-group" @click="$refs.rankInternationalSelect.isShow = true">
                   {{ rankInternationalS.label
                   }}<view v-if="!rankInternationalS.label">请选择</view>
                 </view>
               </view>
             </view>
 
-            <view class="tips"
-              >*请确保填写信息的真实性，否则会影响评估结果和信用</view
-            >
+            <view class="tips">*请确保填写信息的真实性，否则会影响评估结果和信用</view>
           </view>
           <view class="btn-wrap">
             <view class="btn1" @click="pageBack()">上一页</view>
             <view class="btn1" @click="evaluateSj()">下一页</view>
             <view class="btn1" @click="exitAndSave()">保存退出</view>
           </view>
-          <rcyj-picker-single
-            ref="educationSelect"
-            :list="educationList"
-            @confirm="educationConfirm"
-          />
-          <rcyj-picker-single
-            ref="educationFSelect"
-            :list="educationList"
-            @confirm="educationFConfirm"
-          />
-          <rcyj-picker-single
-            ref="degreeSelect"
-            :list="check"
-            @confirm="degreeConfirm"
-          />
-          <rcyj-picker-single
-            ref="degreeNameSelect"
-            :list="degreeList"
-            @confirm="degreeNameConfirm"
-          />
-          <rcyj-picker-single
-            ref="graduatedSchoolTypeSelect"
-            :list="graduatedSchoolTypeList"
-            @confirm="graduatedSchoolTypeConfirm"
-          />
-          <rcyj-picker-single
-            ref="schoolLevelSelect"
-            :list="schoolLevelList"
-            @confirm="schoolLevelConfirm"
-          />
-          <rcyj-picker-single
-            ref="educationalNatureSelect"
-            :list="educationalNatureList"
-            @confirm="educationalNatureConfirm"
-          />
-          <rcyj-picker-single
-            ref="rankCountrySelect"
-            :list="rankCountryList"
-            @confirm="rankCountryConfirm"
-          />
-          <rcyj-picker-single
-            ref="rankInternationalSelect"
-            :list="rankInterationalList"
-            @confirm="rankInternationalConfirm"
-          />
+          <rcyj-picker-single ref="educationSelect" :list="educationList" @confirm="educationConfirm" />
+          <rcyj-picker-single ref="educationFSelect" :list="educationList" @confirm="educationFConfirm" />
+          <rcyj-picker-single ref="degreeSelect" :list="check" @confirm="degreeConfirm" />
+          <rcyj-picker-single ref="degreeNameSelect" :list="degreeList" @confirm="degreeNameConfirm" />
+          <rcyj-picker-single ref="graduatedSchoolTypeSelect" :list="graduatedSchoolTypeList"
+            @confirm="graduatedSchoolTypeConfirm" />
+          <rcyj-picker-single ref="schoolLevelSelect" :list="schoolLevelList" @confirm="schoolLevelConfirm" />
+          <rcyj-picker-single ref="educationalNatureSelect" :list="educationalNatureList"
+            @confirm="educationalNatureConfirm" />
+          <rcyj-picker-single ref="rankCountrySelect" :list="rankCountryList" @confirm="rankCountryConfirm" />
+          <rcyj-picker-single ref="rankInternationalSelect" :list="rankInterationalList"
+            @confirm="rankInternationalConfirm" />
           <rcyj-date ref="graduacionTime" @confirm="graduacionTimeConfirm" />
         </view>
       </view>
@@ -334,6 +210,7 @@ import {
   queryDictDataByType,
   queryHighArea,
   upload,
+  precisoEvaluate
 } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 import MinePop from "../components/mine-pop/mine-pop.vue";
@@ -341,6 +218,7 @@ import FunPop from "../components/fun-pop/fun-pop.vue";
 import RcyjIcon from "../../components/rcyj-icon/rcyj-icon.vue";
 import RcjyInput from "../../components/rcyj-input/rcjy-input.vue";
 const config = require("@/config/index");
+import { showScore } from '@/utils/utils'
 export default Vue.extend({
   components: {
     MinePop,
@@ -617,11 +495,21 @@ export default Vue.extend({
       console.log(params);
       eduAdd(params)
         .then((data) => {
-          wx.switchTab({
-            url: "../index/index",
+          precisoEvaluate().then((res) => {
+            showScore(res,1500)
+            // uni.showToast({
+            //   icon: 'none',
+            //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+            //   duration: 1500
+            // })
+            setTimeout(() => {
+              wx.switchTab({
+                url: "../index/index",
+              });
+            }, 1500);
           });
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
     async openSheetEdu(type) {
       const params = {
@@ -731,17 +619,28 @@ export default Vue.extend({
       console.log(params);
       eduAdd(params)
         .then((data) => {
-          this.$changePage({
-            // params: {
-            //   data: this.identityType
-            // },
-            url: "/pages/evaDuty/index",
+          precisoEvaluate().then((res) => {
+             showScore(res,1500)
+            // uni.showToast({
+            //   icon: 'none',
+            //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+            //   duration: 1500
+            // })
+            setTimeout(() => {
+              this.$changePage({
+                params: {
+                  data: this.identity,
+                },
+                url: "pages/evaDuty/index",
+              });
+            }, 1500);
           });
+
           //  wx.switchTab({
           //   url:'../index/index'
           // })
         })
-        .catch((err) => {});
+        .catch((err) => { });
     },
   },
 });

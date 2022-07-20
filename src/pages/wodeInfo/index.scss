@@ -102,7 +102,7 @@
                 border-radius: 16rpx;
                 height: 130rpx;
                 min-width: 330rpx;
-                background-color: #ecf0f2;
+                background-color: #fff;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -116,17 +116,17 @@
 
             .long {
                 width: 100%;
-                background-color: #ecf0f2;
+                background-color: #fff;
                 box-shadow: 5rpx 5rpx 5rpx #b6b6b6, -5rpx -5rpx 5rpx #fff;
             }
 
             .redbg {
-                background-color: #ee2727;
+                background-color: #fff;
                 color: #fff;
 
                 .p1 {
                     font-size: 32rpx;
-                    color: #fff;
+                    color: #030303;
                 }
             }
         }

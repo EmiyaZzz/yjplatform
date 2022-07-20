@@ -217,6 +217,11 @@ export const postReportSend = (data) => {  //new
 }
 
 //报告列表
+export const reportDetail = (data) => {  //new
+  return get(`${apiPath}/assess/commodity/queryLastReportInfo`, { params: data })
+}
+
+//报告列表
 export const reportList = (data) => {  //new
   return get(`${apiPath}/assess/commodity/reportList`, { params: data })
 }
@@ -241,6 +246,10 @@ export const certificateInit = (data) => {  //new
 //查询身价证书是否超期和支付等相关信息
 export const certificateQuery = (data) => {  //new
   return get(`${apiPath}/assess/certificate/queryPersonCertificateInfo`, { params: data })
+}
+//积分管理
+export const pointDetail = (data) => {  //new
+  return post(`${apiPath}/assess/point/queryUserPoints`, data)
 }
 //积分管理
 export const pointAdd = (data) => {  //new
@@ -275,6 +284,33 @@ export const sjDocDetail = (data) => {  //new
 export const getCardBagData = (data) => {  //new
   return get(`${apiPath}/user/userPic/queryUserCardBagData`, { params: data })
 }
+//积分记录
+export const getPointRecord = (data) => {  //new
+  return post(`${apiPath}/assess/point/list`, data)
+}
+
+//补充信息删除
+export const batchDelete = (data) => {  //new
+  return post(`${apiPath}/assess/supplement/batchDelete`, data, { www: 1 })
+}
+//补充信息添加
+export const batchAdd = (data) => {  //new
+  return post(`${apiPath}/assess/supplement/add`, data )
+}
+//补充信息添加
+export const batchupdate = (data) => {  //new
+  return post(`${apiPath}/assess/supplement/update`, data)
+}
+//补充信息列表
+export const batchList = (data) => {  //new
+  return get(`${apiPath}/assess/supplement/list`, { params: data })
+}
+
+//订单列表查询
+export const queryUserOrderList = (data) => {  //new
+  return get(`${apiPath}/assess/yjptOrder/queryUserOrderList`, { params: data })
+}
+
 //-------------------------------------------------------
 export const getRankListApi = () => {
   return get(`${apiPath}/assess/getRankList`)

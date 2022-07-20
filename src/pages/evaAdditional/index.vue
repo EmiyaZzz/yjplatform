@@ -62,7 +62,7 @@
             </view>
             <view class="in-box at-row align-center space-between">
               <view class="in-label">
-                社保缴纳情况
+                上年度社保缴纳情况
               </view>
               <view>
                 <view class="select-group" @click="$refs.securityPaymentSelect.isShow = true">
@@ -72,7 +72,7 @@
             </view>
             <view class="in-box at-row align-center space-between">
               <view class="in-label">
-                社保使用情况
+                上年度社保使用情况
               </view>
               <view>
                 <view class="select-group" @click="$refs.securitySpendSelect.isShow = true">
@@ -82,7 +82,7 @@
             </view>
             <view class="in-box at-row align-center space-between">
               <view class="in-label">
-                个人所得税
+                上年度个人所得税缴纳情况(元)
               </view>
               <view class="flex-group at-row align-center space-between">
                 <u-input v-model="personalIncomeTax" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
@@ -115,7 +115,7 @@
             <view class="tips">*请确保填写信息的真实性，否则会影响评估结果和信用</view>
           </view>
           <view class="btn-wrap">
-             <view class="btn1" @click="pageBack()">上一页</view>
+            <view class="btn1" @click="pageBack()">上一页</view>
             <view class="btn1" @click="evaluateSj()">下一页</view>
             <view class="btn1" @click="exitAndSave()">保存退出</view>
           </view>
@@ -140,13 +140,15 @@ import {
   additionalUpdate,
   queryDictDataByType,
   queryHighArea,
-  upload
+  upload,
+  precisoEvaluate
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
 import FunPop from '../components/fun-pop/fun-pop.vue'
 import RcyjIcon from '../../components/rcyj-icon/rcyj-icon.vue'
 import RcjyInput from '../../components/rcyj-input/rcjy-input.vue'
+import { showScore } from '@/utils/utils'
 const config = require('@/config/index')
 export default Vue.extend({
   components: {
@@ -203,7 +205,7 @@ export default Vue.extend({
       securitySpendName: '',
 
       personalIncomeTax: '',
-      entrepreneurialExperienceS: '',
+      entrepreneurialExperienceS: { label: '否', value: '2' },
       entrepreneurialExperience: '',
 
       check: [{
@@ -348,11 +350,18 @@ export default Vue.extend({
     },
     checkEntExpConfirm(result) {
       this.entrepreneurialExperienceS = result[0]
+      this.entrepreneurialExperience = ''
     },
     saveAndGo() {
 
     },
+    checkIs() {
+      if (this.entrepreneurialExperienceS.value == '0') {
+        this.entrepreneurialExperience = ''
+      }
+    },
     exitAndSave() {
+      this.checkIs()
       const {
         userId,
         healthStatusS,
@@ -386,14 +395,24 @@ export default Vue.extend({
         //   // },
         //   url: '/pages/evaWealthInfo/index'
         // })
-        wx.switchTab({
-          url: '../index/index'
-        })
+        precisoEvaluate().then((res) => {
+           showScore(res,1500)
+          // uni.showToast({
+          //   icon: 'none',
+          //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+          //   duration: 1500
+          // })
+          setTimeout(() => {
+            wx.switchTab({
+              url: "../index/index",
+            });
+          }, 1500);
+        });
       }).catch((err) => {
 
       });
     },
-   pageBack() {
+    pageBack() {
       this.$changePage({
         params: {
           data: this.identity,
@@ -402,6 +421,7 @@ export default Vue.extend({
       });
     },
     evaluateSj() {
+      this.checkIs()
       const {
         userId,
         healthStatusS,
@@ -429,12 +449,23 @@ export default Vue.extend({
       }
       console.log(params)
       additionalUpdate(params).then((data) => {
-        this.$changePage({
-          // params: {
-          //   data: this.identityType
-          // },
-          url: '/pages/evaWealthInfo/index'
-        })
+        precisoEvaluate().then((res) => {
+           showScore(res,1500)
+          // uni.showToast({
+          //   icon: 'none',
+          //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+          //   duration: 1500
+          // })
+          setTimeout(() => {
+            this.$changePage({
+              params: {
+                data: this.identity,
+              },
+              url: "pages/evaWealthInfo/index",
+            });
+          }, 1500);
+        });
+
         //  wx.switchTab({ 
         //   url:'../index/index'
         // })

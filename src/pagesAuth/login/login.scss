@@ -2,6 +2,10 @@
     min-height: 100vh;
     padding: 150rpx 40rpx 120rpx;
     background-color: $rcyj-bg-color-primary;//#e5f5fa
+    
+    background-image:url(https://youjiaplatform.oss-cn-hangzhou.aliyuncs.com/20220617/loginBg.png) ; 
+    background-repeat: no-repeat;
+    background-size: contain;
 
     .login-welcome-tips {
         color: #FFFFFF;
@@ -28,12 +32,13 @@
     .login-form-wrapper {  
         padding: 50rpx;
         background: #fff;
-        border-radius: 0px 75rpx 0px 75rpx;
+        border-radius: 40rpx 0rpx 40rpx 0rpx;
+
 
         .in-label {   
             font-size: 40rpx;
             font-weight: 500;
-            // color: #003e8d;
+             color: $uni-text-color;
         }
 
         .in-box {
