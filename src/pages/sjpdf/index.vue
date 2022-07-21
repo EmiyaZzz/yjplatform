@@ -85,11 +85,23 @@ export default Vue.extend({
       console.log(result)
       this.payStatus = result.payStatus
       this.isExpired = result.isExpired
+      this.isReady = result.isReady
 
       if (this.payStatus == '1') {
         this.buyComplete = true
       } else {
         this.buyComplete = false
+      }
+   
+      if (this.isReady == '0') {
+        uni.showToast({
+          icon: 'none',
+          title: `信息填写不足，无法生成报告，请继续补全信息`,
+          duration: 2000
+        })
+        setTimeout(() => {
+          this.$changePage("pages/evaluateUserInfo/index");
+        }, 2000);
       }
     })
 

@@ -66,14 +66,14 @@
                 .select-group {
                     height: 64rpx;
                     width: 300rpx;
-                    color: #9094A0;
+                    color: $uni-text-color;
                     text-align: right;
                     position: relative;
                     line-height: 64rpx;
                 }
                 .flex-group {
                     height: 64rpx;
-                    color: #9094A0;
+                    color: $uni-text-color;
                     display: flex;
                     flex-direction: column-reverse;
                 }

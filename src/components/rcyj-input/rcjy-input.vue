@@ -47,7 +47,7 @@ export default {
   },
   data () {
     return {
-      placeholderStyle: 'color: #9094A0;fontSize: 30rpx',
+      placeholderStyle: 'color:$uni-text-color-placeholder;fontSize: 30rpx',
       customStyle: {
         color: '#1D1E1F',
         fontSize: '30rpx'

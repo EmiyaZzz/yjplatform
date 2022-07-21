@@ -10,19 +10,19 @@
           <view class="data-form-content">
             <view class="title">成就贡献</view>
             <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataTech" :key="index">
-              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
+              <view :style="{ 'text-align': 'right', color: '#303133' }" @click="deleteItem1(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 标题 </view>
                 <view class="flex-group at-row align-center space-between">
                   <u-input v-model="item.contributeName" maxlength="20"
-                    placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
                     placeholder="请输入标题" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.contributeDes" maxlength="30" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.contributeDes" maxlength="30" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入描述" />
                 </view>
               </view>

@@ -54,7 +54,7 @@
             <view class="in-box at-row align-center space-between" v-if="degreeS.value == 0">
               <view class="in-label"> 学位名称 </view>
               <!-- <view class="felx-group at-row align-center space-between">
-                <u-input v-model="degreeName" maxlength="11" placeholder-style="color:#9094A0;font-size:30rpx"
+                <u-input v-model="degreeName" maxlength="11" placeholder-style="color:#303133;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="请输入学位名称" />
               </view> -->
               <view>
@@ -232,7 +232,7 @@ export default Vue.extend({
       action: config.gatewayUrl + "/assess/oss/uploadReturnUrl",
       current: 0,
       uInputStyle: {
-        color: "#black",
+        color: "#9094A0",
         fontSize: "30rpx",
         textAlign: "right",
       },

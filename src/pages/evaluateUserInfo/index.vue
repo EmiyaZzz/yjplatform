@@ -91,9 +91,11 @@
             <view class="in-box at-row align-center space-between">
               <view class="in-label"> 单位地址 </view>
               <view class="select-group">
-                <rcjy-input style="text-align: right" :disabled="true" placeholder="请选择单位所在省市区"
+                <!-- <rcjy-input class="showitem" :disabled="true" placeholder="请选择单位所在省市区" 
                   :inval="companyAreaName">
-                </rcjy-input>
+                </rcjy-input> -->
+                  <u-input v-model="companyAreaName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  :clearable="false" :custom-style="uInputStyle" placeholder="请选择单位所在省市区" />
                 <rcyj-picker-districts ref="districts" @confirm="districtsConfirm" />
               </view>
             </view>
@@ -220,7 +222,7 @@ export default Vue.extend({
       action: config.gatewayUrl + "/assess/oss/uploadReturnUrl",
       current: 0,
       uInputStyle: {
-        color: "#black",
+        color: "#9094A0",
         fontSize: "30rpx",
         textAlign: "right",
       },
@@ -428,7 +430,7 @@ export default Vue.extend({
               "-" +
               data.companyAreaName;
           } else {
-            this.companyAreaName = "请选择单位地址";
+            this.companyAreaName = "";
           }
 
           this.companyProvinceName = data.companyProvinceName;

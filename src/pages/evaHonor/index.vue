@@ -10,7 +10,7 @@
           <view class="data-form-content">
             <view class="title">荣誉称号</view>
             <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataHonor" :key="index">
-              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
+              <view :style="{ 'text-align': 'right', color: '#303133' }" @click="deleteItem1(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 荣誉等级 </view>
                 <view class="list-c" @click="setCurrentSelect(item)">
@@ -22,7 +22,7 @@
                       item.honorLevel.label
                   }}</view>
                   <view v-else>{{ item.honorLevel }}</view>
-                  <view v-if="!item.honorLevel">请选择</view>
+                  <view v-if="!item.honorLevel" style="color:#9094A0">请选择</view>
                   <!-- <view class="select-group" @click="$refs.honorSelect.isShow = true">
                     {{ honorSelectS.label }}<view v-if="!honorSelectS.label">请选择</view>
                   </view> -->

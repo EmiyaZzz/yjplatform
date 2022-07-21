@@ -145,7 +145,7 @@ export default Vue.extend({
       action: config.gatewayUrl + "/assess/oss/uploadReturnUrl",
       current: 0,
       uInputStyle: {
-        color: "#black",
+        color: "#9094A0",
         fontSize: "30rpx",
         textAlign: "right",
       },

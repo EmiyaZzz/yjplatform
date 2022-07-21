@@ -61,18 +61,18 @@
             <view class="box1">
               <view class="team-text-panel">
                 <view class="team-text">
-                  <p>综合身价报告：</p>
+                  <p style="font-weight:bold">综合身价报告：</p>
                   <p>用于求职招聘、定岗定薪、晋级晋升、评优评级、资格认定、职称评审、信用评级、投资融资、股权激励、企业设立、创新创业、双招双引等，向相应机构提供。 </p>
-                  <p>金融价值报告：
+                  <p style="font-weight:bold">金融价值报告：
                   </p>
                   <p> 用于身价授信，向金融机构提供。</p>
-                  <p>岗位价值报告：</p>
+                  <p style="font-weight:bold">岗位价值报告：</p>
                   <p> 用于求职招聘、定岗定薪等，向用人单位提供。</p>
-                  <p>投资价值报告：</p>
+                  <p style="font-weight:bold">投资价值报告：</p>
                   <p> 用于身价融资，向投资机构提供。</p>
-                  <p>身价出资报告：</p>
+                  <p style="font-weight:bold">身价出资报告：</p>
                   <p> 用于企业注册，向注册机构提供。</p>
-                  <p>人才认定报告：</p>
+                  <p style="font-weight:bold">人才认定报告：</p>
                   <p> 用于人才认定，向人才认定机构提供。</p>
                 </view>
               </view>

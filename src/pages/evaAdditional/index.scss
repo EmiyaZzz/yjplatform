@@ -77,6 +77,12 @@
                     display: flex;
                     flex-direction: column-reverse;
                 }
+                .warp-group{
+                    margin-top: 10rpx;
+                    // background-color: red;
+                    display: flex;
+                    justify-content: right;
+                }
 
                 u-line {
                     flex: none;

@@ -66,7 +66,7 @@
               </view>
               <view>
                 <view class="select-group" @click="$refs.securityPaymentSelect.isShow = true">
-                  {{ securityPaymentS.label }}<view v-if="!securityPaymentS.label">请选择</view>
+                 <view v-if="securityPaymentS.label">{{ securityPaymentS.label }}</view> <view v-else>请选择</view>
                 </view>
               </view>
             </view>
@@ -76,15 +76,15 @@
               </view>
               <view>
                 <view class="select-group" @click="$refs.securitySpendSelect.isShow = true">
-                  {{ securitySpendS.label }}<view v-if="!securitySpendS.label">请选择</view>
+                <view v-if="securitySpendS.label"> {{ securitySpendS.label }}</view> <view v-else>请选择</view>
                 </view>
               </view>
             </view>
-            <view class="in-box at-row align-center space-between">
+            <view class="in-box  align-center space-between">
               <view class="in-label">
                 上年度个人所得税缴纳情况(元)
               </view>
-              <view class="flex-group at-row align-center space-between">
+              <view class="warp-group">
                 <u-input v-model="personalIncomeTax" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="请输入个人所得税" />
               </view>
@@ -163,7 +163,7 @@ export default Vue.extend({
       action: config.gatewayUrl + '/assess/oss/uploadReturnUrl',
       current: 0,
       uInputStyle: {
-        color: '#black',
+        color: '#9094A0',
         fontSize: '30rpx',
         textAlign: 'right'
       },

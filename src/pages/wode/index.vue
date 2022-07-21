@@ -113,7 +113,7 @@
               <p class="p1">退出登录</p>
             </view>
           </view>
-          <view style="text-align:right">当前版本：V1.0.5</view>
+          <view style="text-align:right">当前版本：V1.0.7</view>
         </view>
         <!-- <view v-else>
           <view class="fun-bg">

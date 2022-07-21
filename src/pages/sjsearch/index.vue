@@ -124,7 +124,7 @@ export default Vue.extend({
       idnum: '',
       current: 0,
       uInputStyle: {
-        color: '#black',
+        color: '#9094A0',
         fontSize: '28rpx',
         textAlign: 'right'
       },

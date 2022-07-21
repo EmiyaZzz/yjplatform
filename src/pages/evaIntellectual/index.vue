@@ -7,25 +7,25 @@
           <view class="data-form-content">
             <view class="title">未转化原创发明专利</view>
             <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataPatent" :key="index">
-              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
+              <view :style="{ 'text-align': 'right', color: '#303133' }" @click="deleteItem1(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利号 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利号" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利描述" />
                 </view>
               </view>
@@ -36,25 +36,25 @@
 
             <view class="title">已转化原创发明专利</view>
             <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in dataPatented" :key="index">
-              <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
+              <view :style="{ 'text-align': 'right', color: '#303133' }" @click="deleteItem1(item)">删除</view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利号 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利号" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利描述" />
                 </view>
               </view>

@@ -164,6 +164,12 @@ export default Vue.extend({
                 // duration: 2000
               })
               that.payStatus = '1'
+
+              certificateInit({ paystatus: that.payStatus }).then((res) => {
+                that.imgUrl = res
+              }).catch((err) => {
+
+              });
             }).catch((err) => {
               console.log(err.message);
             })
