@@ -311,6 +311,10 @@ export const queryUserOrderList = (data) => {  //new
   return get(`${apiPath}/assess/yjptOrder/queryUserOrderList`, { params: data })
 }
 
+//查询身价占比
+export const queryRankPercent = (data) => {  //new
+  return get(`${apiPath}/assess/assess/rankRange`, { params: data })
+}
 //-------------------------------------------------------
 export const getRankListApi = () => {
   return get(`${apiPath}/assess/getRankList`)

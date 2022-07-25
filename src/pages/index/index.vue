@@ -33,6 +33,7 @@
                   <view class="p2" v-else> {{ complexScore }}万</view>
                 </view>
               </view>
+              <view class="chao">您的身价已经超过{{rankPercent}}的用户</view>
             </view>
             <!-- <view class="empty2" v-if="scoreStatus == '0'">
               快速评估是体验身价评估的快捷方式，请填写真实信息，以免影响评估结果和信用。您提供的信息仅用作您本人的身价评估，我们将按照国家有关法律法规的规定严格保密。
@@ -43,23 +44,23 @@
                   温馨提示
                 </view>
                 <view class="text">
-                 快速评估是体验身价评估的快捷方式，请填写真实信息，以免影响评估结果和信用。您提供的信息仅用作您本人的身价评估，我们将按照国家有关法律法规的规定严格保密。
+                  快速评估是体验身价评估的快捷方式，请填写真实信息，以免影响评估结果和信用。您提供的信息仅用作您本人的身价评估，我们将按照国家有关法律法规的规定严格保密。
                 </view>
               </view>
             </view>
             <!-- <view class="per">高于90%人群</view> -->
-            <view class="btn-box1"  v-if="scoreStatus != '0'">
+            <view class="btn-box1" v-if="scoreStatus != '0'">
               <view class="box1" @click="toDoc">
                 <view class="img-panel">
                   <img :src=imgCurrentSj alt="" />
                 </view>
-                <p >身价档案</p>
+                <p>身价档案</p>
               </view>
               <view class="box1" @click="toAssessment">
                 <view class="img-panel">
                   <img :src=imgUpSj alt="">
                 </view>
-                <p >身价提升</p>
+                <p>身价提升</p>
               </view>
             </view>
             <view class="search-box" v-if="scoreStatus == 3">
@@ -68,7 +69,7 @@
             </view>
             <view class="intro-box" v-if="scoreStatus == '1'">
               <view class="intro-text">
-                  <view style="text-align:center;margin-top: 50rpx;">
+                <view style="text-align:center;margin-top: 50rpx;">
                   温馨提示
                 </view>
                 <view class="text">
@@ -157,7 +158,8 @@ import {
   userInfo,
   getRankApi,
   getApprobateApi,
-  updateBaseInfoApi
+  updateBaseInfoApi,
+  queryRankPercent
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
@@ -178,7 +180,7 @@ export default Vue.extend({
       postValue: '',
       investmentValue: '',
       scoreStatus: 0,
-
+      rankPercent: '',
       firstSearch: false,
 
       imgCurrentSj: this.$OSS_IMAGES_URL + '/20220617/indexmp1.png',//this.$OSS_IMAGES_URL + '/20220617/%E5%BD%93%E5%89%8D%E8%BA%AB%E4%BB%B7logo%402x.png',
@@ -259,6 +261,10 @@ export default Vue.extend({
     if (this.getToken) {
       userInfo().then((data) => {
         this.scoreStatus = data.scoreStatus
+      })
+      queryRankPercent().then((data) => {
+        console.log(data)
+        this.rankPercent = data.level
       })
       getUserInfoApi().then((data) => {
         // if (data.assessResult) this.socialScore = data.assessResult.socialScore ? data.assessResult
@@ -343,7 +349,7 @@ export default Vue.extend({
         });
       }
     },
-   
+
     // 授权电话号回调 (这里千万注意：小程序必须要完成 微信认证才能获取到加密的手机号码)
     getPhone(res) {
       console.log(res);
