@@ -238,6 +238,30 @@
 			"style": {
 				"navigationBarTitleText": "订单列表"
 			}
+		},
+		{
+			"path": "pages/team/index",
+			"style": {
+				"navigationBarTitleText": "团队列表"
+			}
+		},
+		{
+			"path": "pages/teamCreate/index",
+			"style": {
+				"navigationBarTitleText": "团队创建"
+			}
+		},
+		{
+			"path": "pages/teamInfoMe/index",
+			"style": {
+				"navigationBarTitleText": "团队信息"
+			}
+		},
+		{
+			"path": "pages/teamInfoOther/index",
+			"style": {
+				"navigationBarTitleText": "团队信息"
+			}
 		}
 	],
 	"tabBar": {

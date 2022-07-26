@@ -96,6 +96,7 @@ export default Vue.extend({
           honorName: "",
           honorLevel: {
             label: "请选择",
+            value:''
           },
         },
       ],
@@ -141,14 +142,17 @@ export default Vue.extend({
           if (!result) return;
           this.dataHonor = [];
           let showList = result;
-          console.log(this.honorSelectList.length);
+        
+          console.log(showList)
           showList.forEach((element1) => {
             this.honorSelectList.forEach((element2) => {
               // console.log(element1)
               //  console.log(element2)
               if (element1.honorLevel == element2.value) {
-                //  console.log(element1.honorLevel)
-                element1.honorLevel = element2.label;
+                  console.log(element1.honorLevel)
+                //  element1.honorLevel = element2.label;
+                element1.honorLevel = element2;
+                //  element1.honorLevel.value = element2.value;
               }
             });
           });

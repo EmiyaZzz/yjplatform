@@ -50,11 +50,11 @@
             </view>
             <!-- <view class="per">高于90%人群</view> -->
             <view class="btn-box1" v-if="scoreStatus != '0'">
-              <view class="box1" @click="toDoc">
+              <view class="box1" @click="toTeam">
                 <view class="img-panel">
                   <img :src=imgCurrentSj alt="" />
                 </view>
-                <p>身价档案</p>
+                <p>团队信息</p>
               </view>
               <view class="box1" @click="toAssessment">
                 <view class="img-panel">
@@ -475,6 +475,9 @@ export default Vue.extend({
     },
     toDoc() {
       this.checkStatus("pages/sjDoc/index")
+    },
+     toTeam() {
+      this.checkStatus("pages/team/index")
     },
     checkStatus(url) {
       if (!this.getToken) {

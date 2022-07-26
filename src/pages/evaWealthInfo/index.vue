@@ -482,7 +482,8 @@ export default Vue.extend({
       console.log(params);
       wealthInfoUpdate(params)
         .then((data) => {
-          precisoEvaluate().then((res) => {
+          let isComplete ='1'
+          precisoEvaluate(isComplete).then((res) => {
             pointAdd({
               pointDes: "身价提升",
               pointNum: 50,
