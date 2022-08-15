@@ -27,6 +27,14 @@ const Plugin = {
         return changePage
       }
     })
+     // 挂载公共方法-页面跳转($changePageR)
+     const changePageR = commonChangePageR
+     Vue.changePageR = changePageR
+     Object.defineProperty(Vue.prototype, '$changePageR', {
+       get () {
+         return changePageR
+       }
+     })
     // 挂载公共方法-页面返回($pageBack)
     const pageBack = commonPageBack
     Vue.pageBack = pageBack
@@ -116,6 +124,27 @@ const commonChangePage = function (option) {
   } else {
     option.url = option.url || ''
     option.type = option.type || 'redirectTo'//'navigateTo'
+    option.delta = option.delta || 1
+    option.params = option.params || {}
+    this.$u.route({
+      url: option.url,
+      type: option.type,
+      delta: option.delta,
+      params: option.params
+    })
+  }
+}
+/**
+ *  公共方法-页面跳转
+ */
+ const commonChangePageR = function (option) {
+  if (typeof (option) === 'string') {
+    this.$u.route({
+      url: option
+    })
+  } else {
+    option.url = option.url || ''
+    option.type = option.type || 'navigateTo'//'navigateTo'
     option.delta = option.delta || 1
     option.params = option.params || {}
     this.$u.route({

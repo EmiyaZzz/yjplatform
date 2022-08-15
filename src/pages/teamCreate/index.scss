@@ -20,12 +20,18 @@
                 justify-content: center;
                 align-items: center;
                 .img-panel{
+                    width: 150rpx;
+                    height: 150rpx;
                    border-radius: 20rpx;
                    margin-right: 20rpx;
+                   img{
+                    width: 100%;
+                    height: 100%;
+                   }
                 }
             }    
             .in-box{
-                padding: 60rpx 0;
+                padding: 60rpx 0 0;
                 border-bottom: 1px solid rgba(44, 108, 237, 0.8);
                 color: #003e8d;
                 font-size: 30rpx;

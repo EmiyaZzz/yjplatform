@@ -6,7 +6,9 @@
         <!-- <view class="top-title">我的团队</view> -->
         <view class="box1 shadowb colorbg">
           <view class="title-panel">
-            <view> 李东泽（5383）的团队 </view>
+            <view v-if="teamInfo.mobile"> {{ teamInfo.teamName }}
+              ({{ teamInfo.mobile.substr(teamInfo.mobile.length - 4, teamInfo.mobile.length) }})</view>
+            <view class="vipLogo" style="color:red" v-if="payInfo.payStatus == '1'"><img :src=imgvip alt="">  </view>
             <!-- <img :src=more alt=""> -->
           </view>
           <view class="content-panel">
@@ -15,9 +17,9 @@
                 <img :src=imgAvator alt="">
               </view>
               <view class="info-text">
-                <p>综合身价：5000万</p>
-                <p>综合身价：5000万</p>
-                <p>综合身价：5000万</p>
+                <p>团队身价：{{ teamInfo.teamScore }}万</p>
+                <p v-if="teamInfo.enterpriseName">所属企业：{{ teamInfo.enterpriseName }}</p>
+                <p>团队创建者：{{ teamInfo.userName }}</p>
               </view>
             </view>
           </view>
@@ -25,11 +27,11 @@
         <view class="box1 shadowb">
           <view class="title-panel">
             <view> 团队成员 </view>
-            <img :src=more alt="">
+            <!-- <img :src=more alt=""> -->
           </view>
           <view class="content-panel">
             <view class="rank-panel">
-              <view class="points-title">
+              <!-- <view class="points-title">
                 <view class="content">
                   <view class="points-img">
                     <img :src=icon1 alt="">
@@ -48,67 +50,84 @@
                   </view>
                   剩余积分:{{ surplusPoints }}
                 </view>
-              </view>
+              </view> -->
 
               <view class="rank-list-title">
                 <view class="">
                   成员姓名
                 </view>
                 <view class="">
+                  手机号码
+                </view>
+                <view class="">
                   综合身价
                 </view>
-                <!-- <view class="">
-                  积分变动
-                </view> -->
               </view>
               <view>
                 <view class="scroll_box">
-                  <swiper class="swiper" circular="true" vertical="true" display-multiple-items='4' :autoplay="autoplay"
+                  <view class="swiper" circular="true" vertical="true"  :autoplay="autoplay"
                     :interval="interval" :duration="duration">
-                    <swiper-item v-for="(item, index) in recodeList" :key="index" class="swiper-l">
+                    <view v-for="(item, index) in memberList" :key="index" class="swiper-l">
                       <!-- <view class="swiper-item uni-bg-green" style="font-size:14rpx; width:200rpx">{{ item.create_time }}</view> -->
                       <view class="swiper-item uni-bg-green" style="font-size: 24rpx;margin-right:50rpx">{{
-                          item.createTime
+                          item.userName
                       }}</view>
-                      <!-- <view class="swiper-item uni-bg-green">{{ item.pointDes }}
-                      </view> -->
+                      <view class="swiper-item uni-bg-green">{{ item.mobile }}
+                      </view>
                       <!-- <view class="swiper-item uni-bg-green">{{ item.real_name }}**</view> -->
                       <view class="swiper-item uni-bg-green" style="text-align: right;padding-right:40rpx">{{
-                          item.pointNum
-                      }}</view>
-                    </swiper-item>
-                  </swiper>
+                          item.userScore
+                      }}万</view>
+                    </view>
+                  </view>
                 </view>
               </view>
             </view>
 
           </view>
         </view>
-        <!-- <view class="btn">
+        <!-- <view class="btn" v-if="payInfo.payStatus == '0' || payInfo.isExpired == '1'">
+          <view>
+            <view class="line1">
+              <view class="icon">
+                <img :src=imgjf alt="">
+              </view>
+              <p>团队VIP购买</p>
+            </view>
+            <view class="line2">(购买后可获得团队身价报告与身价证书)</view>
+          </view>
+        </view>
+        <view class="btn" @click="toBg" v-if="payInfo.payStatus == '1' && payInfo.isExpired == '0'">
           <view class="icon">
             <img :src=imgbg alt="">
           </view>
           <p> 团队身价报告</p>
         </view>
-        <view class="btn">
+        <view class="btn" @click="toZs" v-if="payInfo.payStatus == '1' && payInfo.isExpired == '0'">
           <view class="icon">
             <img :src=imgzs alt="">
           </view>
           <p> 团队身价证书</p>
         </view> -->
-        <view class="btn">
+        <view class="btn" @click="leaveTeam">
           <view class="icon">
             <img :src=imgxg alt="">
           </view>
-          <p> 离开此团队</p>
+          <p>离开此团队</p>
         </view>
+        <!-- <view class="btn" @click="backList">
+          <view class="icon">
+            <img :src=icon2 alt="">
+          </view>
+          <p> 返回团队列表</p>
+        </view> -->
       </view>
     </view>
   </rcyj-page-view>
 </template>
 <script>
 import Vue from "vue";
-import { getPointRecord, pointDetail } from "@/api/common.js";
+import { teamDetail, teamPayInfo, teamMember, teamMemberLeave } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 export default Vue.extend({
   components: {
@@ -133,25 +152,68 @@ export default Vue.extend({
       imgzs: this.$OSS_IMAGES_URL + '/20220617/zs1.png',
       imgbg: this.$OSS_IMAGES_URL + '/20220617/bg1.png',
       imgxg: this.$OSS_IMAGES_URL + '/20220617/xg1.png',
+      imgjf: this.$OSS_IMAGES_URL + '/20220617/jf1.png',
+      imgvip: this.$OSS_IMAGES_URL + '/20220617/vip1.png',
+
+      teamId: '',
+      teamInfo: {},
+      payInfo: {
+        isExpired: '0',
+        payStatus: '1'
+      },
+      memberList: []
     };
   },
-  onLoad() { },
+  onLoad: function (options) {
+
+    this.teamId = options.id
+  },
   onShow() {
     // let dictType = 'identity'
-    pointDetail().then((result) => {
-      console.log(result)
-      this.allPoints = result.allPoints
-      this.consumePoints = result.consumePoints
-      this.surplusPoints = result.surplusPoints
+    // let params = {
+    //   id:this.teamId
+    // }
+    teamDetail(this.teamId).then((data) => {
+      console.log(data)
+      this.teamInfo = data
     })
-    getPointRecord().then((result) => {
-      this.recodeList = result
+    teamPayInfo({ teamId: this.teamId }).then((data) => {
+      console.log(data)
+      // this.payInfo = data
+    })
+    teamMember({ teamId: this.teamId }).then((data) => {
+      console.log(data)
+      this.memberList = data
     })
   },
   methods: {
     getIdentity(data) {
       this.identity = data.value;
     },
+    toZs() {
+      // this.$changePage("pages/sjcertificateTeam/index");
+      this.$changePage({
+        params: {
+          id: this.teamId,
+        },
+        url: "pages/sjcertificateTeam/index",
+      });
+    },
+    toBg() {
+      // this.$changePage("pages/teamSjpdf/index");
+      this.$changePage({
+        params: {
+          id: this.teamId,
+        },
+        url: "pages/teamSjpdf/index",
+      });
+    },
+    leaveTeam() {
+      teamMemberLeave({ teamId: this.teamId }).then((data) => {
+        console.log(data)
+        this.$changePage("pages/team/index");
+      })
+    }
   },
 });
 </script>

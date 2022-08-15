@@ -262,6 +262,24 @@
 			"style": {
 				"navigationBarTitleText": "团队信息"
 			}
+		},
+		{
+			"path": "pages/sjcertificateTeam/index",
+			"style": {
+				"navigationBarTitleText": "团队证书"
+			}
+		},
+		{
+			"path": "pages/teamSjpdf/index",
+			"style": {
+				"navigationBarTitleText": "团队报告"
+			}
+		},
+		{
+			"path": "pages/teamMemberManage/index",
+			"style": {
+				"navigationBarTitleText": "团队成员管理"
+			}
 		}
 	],
 	"tabBar": {

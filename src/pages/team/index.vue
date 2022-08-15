@@ -2,28 +2,29 @@
   <rcyj-page-view>
     <view class="index-wrapper">
       <view class="body">
-        <!-- <top-info @getIdentityInfo="getIdentity" /> -->
         <view class="top-title">我的团队</view>
-        <view class="box1 shadowb"  @click="toMyTeam">
+        <view class="box1 shadowb" @click="toMyTeam(item)" v-for="(item, index) in myTeam" :key="index" >
           <view class="title-panel">
             <view class="content"> <img class="logo" :src=imgAvator alt="">
-              <view>李东泽（5383）的团队</view>
+              <view>{{ item.teamName }}</view>
             </view>
             <img :src=more class="img-more" alt="">
           </view>
           <view class="content-panel">
             <view class="text-panel">
               <view class="intro-text">
-                <p>综合身价：5000万</p>
+                <p>团队身价：{{ item.teamScore }}万</p>
+              </view>
+              <view class="intro-text" v-if="item.enterpriseName">
+                <p>所属企业：{{ item.enterpriseName }}</p>
+              </view>
+              <view class="intro-text">
+                <p>团队描述：{{ item.teamDes }}</p>
               </view>
             </view>
           </view>
         </view>
-        <view class="box1 shadowb" @click="toCreateTeam">
-          <!-- <view class="title-panel">
-            <view> </view>
-            <img :src=more alt="">
-          </view> -->
+        <view class="box1 shadowb" @click="toCreateTeam" v-if="myTeam.length<2">
           <view class="content-panel">
             <view class="teamadd">
               <view class="content">点击创建团队</view>
@@ -32,45 +33,34 @@
           </view>
         </view>
         <view class="top-title">参与的团队</view>
-
-        <view class="box1 shadowb"  @click="toOthersTeam">
+        <view class="box1 shadowb" @click="toOthersTeam(item)" v-for="(item, index) in joinTeam" :key="index" >
           <view class="title-panel">
             <view class="content"> <img class="logo" :src=imgAvator alt="">
-              <view>赵灵儿（5383）的团队</view>
+              <view>{{ item.teamName }}</view>
             </view>
             <img :src=more class="img-more" alt="">
           </view>
           <view class="content-panel">
             <view class="text-panel">
               <view class="intro-text">
-                <p>综合身价：5000万</p>
+                <p>团队身价：{{ item.teamScore }}万</p>
               </view>
-            </view>
-          </view>
-        </view>
-        <view class="box1 shadowb"  @click="toOthersTeam">
-          <view class="title-panel">
-            <view class="content"> <img class="logo" :src=imgAvator alt="">
-              <view>李逍遥（5383）的团队</view>
-            </view>
-            <img :src=more class="img-more" alt="">
-          </view>
-          <view class="content-panel">
-            <view class="text-panel">
+              <view class="intro-text" v-if="item.enterpriseName">
+                <p>所属企业：{{ item.enterpriseName }}</p>
+              </view>
               <view class="intro-text">
-                <p>综合身价：5000万</p>
+                <p>团队描述：{{ item.teamDes }}</p>
               </view>
             </view>
           </view>
         </view>
-
       </view>
     </view>
   </rcyj-page-view>
 </template>
 <script>
 import Vue from "vue";
-import { getPointRecord, pointDetail } from "@/api/common.js";
+import { teamInfoList, teamInfoJoinList } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 export default Vue.extend({
   components: {
@@ -92,19 +82,35 @@ export default Vue.extend({
       icon3: this.$OSS_IMAGES_URL + "/20220617/ysy-1.png",
       additem: this.$OSS_IMAGES_URL + "/20220617/additem.png",
       imgAvator: this.$OSS_IMAGES_URL + '/20220617/avator.png',
+
+      myTeam: [
+        {
+          teamName: '',
+          teamScore:'',
+          enterpriseName: '',
+          teamDes: ''
+        },  {
+          teamName: '',
+          teamScore:'',
+          enterpriseName: '',
+          teamDes: ''
+        },
+      ],
+      joinTeam: [{
+        teamName: '',
+        enterpriseName: '',
+        teamDes: ''
+      }]
     };
   },
   onLoad() { },
   onShow() {
     // let dictType = 'identity'
-    pointDetail().then((result) => {
-      console.log(result)
-      this.allPoints = result.allPoints
-      this.consumePoints = result.consumePoints
-      this.surplusPoints = result.surplusPoints
+    teamInfoList().then((data) => {
+      this.myTeam = data
     })
-    getPointRecord().then((result) => {
-      this.recodeList = result
+    teamInfoJoinList().then((data) => {
+      this.joinTeam = data
     })
   },
   methods: {
@@ -113,12 +119,30 @@ export default Vue.extend({
     },
     toCreateTeam() {
       this.$changePage("pages/teamCreate/index");
+      // let params = {
+      //   enterpriseName: "有价平台",
+      // }
+      // teamAdd(params).then((data) => {
+      //   console.log(data)
+      // })
     },
-    toMyTeam() {
-      this.$changePage("pages/teamInfoMe/index");
+    toMyTeam(item) {
+      // this.$changePage("pages/teamInfoMe/index");
+      console.log('9999')
+      this.$changePageR({
+        params: {
+          id: item.id,
+        },
+        url: "pages/teamInfoMe/index",
+      });
     },
-     toOthersTeam() {
-      this.$changePage("pages/teamInfoOther/index");
+    toOthersTeam(item) {
+        this.$changePageR({
+        params: {
+          id: item.id,
+        },
+        url: "pages/teamInfoOther/index",
+      });
     }
   },
 });

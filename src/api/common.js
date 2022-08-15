@@ -315,6 +315,64 @@ export const queryUserOrderList = (data) => {  //new
 export const queryRankPercent = (data) => {  //new
   return get(`${apiPath}/assess/assess/rankRange`, { params: data })
 }
+//---------------------团队功能接口----------------------------------
+//我创建的团队
+export const teamInfoList = (data) => {  //new
+  return get(`${apiPath}/assess/teamInfo/list`, { params: data })
+}
+//我加入的团队
+export const teamInfoJoinList = (data) => {  //new
+  return get(`${apiPath}/assess/teamInfo/joinList`, { params: data })
+}
+//我加入的团队
+export const teamAdd = (data) => {  //new
+  return post(`${apiPath}/assess/teamInfo/add`, data)
+}
+//团队信息
+export const teamDetail = (data) => {  //new
+  return get(`${apiPath}/assess/teamInfo/detail/`+ data )
+}
+//团队购买信息
+export const teamPayInfo = (data) => {  //new
+  return get(`${apiPath}/assess/teamInfo/queryTeamPayInfo/`,{ params: data } )
+}
+//查询团队成员
+export const teamMember = (data) => {  //new
+  return get(`${apiPath}/assess/teamMember/queryMemberByTeamId`,{ params: data } )
+}
+//团队证书
+export const TeamCertificate = (data) => {  //new
+  return get(`${apiPath}/assess/teamCertificate/getTeamCertificateURL`,{ params: data } )
+}
+//团队报告
+export const teamReportView = (data) => {  //new
+  return get(`${apiPath}/assess/teamReport/reportView`,{ params: data } )
+}
+//团队报告
+export const teamReportSend = (data) => {  //new
+  return get(`${apiPath}/assess/teamReport/reportSend`,{ params: data } )
+}
+//团队成员添加
+export const teamMemberAdd = (data) => {  //new
+  return post(`${apiPath}/assess/teamMember/add`, data, config)
+}
+//团队成员删除
+export const teamMemberDelete = (data) => {  //new
+  return get(`${apiPath}/assess/teamMember/delete`,{ params: data } )
+}
+//团队成员退出
+export const teamMemberLeave = (data) => {  //new
+  return get(`${apiPath}/assess/teamMember/signOutTeam`,{ params: data } )
+}
+//团队解散
+export const teamBatchBreak = (data) => {  //new
+  return post(`${apiPath}/assess/teamInfo/batchDelete`,data, { www: 1 } )
+}
+//---------------------小程序支付接口----------------------------------
+//小程序支付
+export const wechatAppletPay = (data) => {  //new
+  return post(`${apiPath}/assess/wechatApplet/pay`, data, config)
+}
 //-------------------------------------------------------
 export const getRankListApi = () => {
   return get(`${apiPath}/assess/getRankList`)

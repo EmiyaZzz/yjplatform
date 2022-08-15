@@ -6,8 +6,9 @@
         <!-- <view class="top-title">我的团队</view> -->
         <view class="box1 shadowb colorbg">
           <view class="title-panel">
-            <view> 李东泽（5383）的团队 </view>
-            <view style="color:red">vip </view>
+            <view v-if="teamInfo.mobile"> {{ teamInfo.teamName }}
+              ({{ teamInfo.mobile.substr(teamInfo.mobile.length - 4, teamInfo.mobile.length) }})</view>
+            <view class="vipLogo" style="color:red" v-if="payInfo.payStatus == '1'"><img :src=imgvip alt=""> </view>
             <!-- <img :src=more alt=""> -->
           </view>
           <view class="content-panel">
@@ -16,15 +17,15 @@
                 <img :src=imgAvator alt="">
               </view>
               <view class="info-text">
-                <p>综合身价：5000万</p>
-                <p>综合身价：5000万</p>
-                <p>综合身价：5000万</p>
+                <p>团队身价：{{ teamInfo.teamScore }}万</p>
+                <p v-if="teamInfo.enterpriseName">所属企业：{{ teamInfo.enterpriseName }}</p>
+                <p>团队创建者：{{ teamInfo.userName }}</p>
               </view>
             </view>
           </view>
         </view>
         <view class="box1 shadowb">
-          <view class="title-panel">
+          <view class="title-panel" @click="toMemberManage">
             <view> 团队成员 </view>
             <img :src=more alt="">
           </view>
@@ -56,36 +57,36 @@
                   成员姓名
                 </view>
                 <view class="">
+                  手机号码
+                </view>
+                <view class="">
                   综合身价
                 </view>
-                <!-- <view class="">
-                  积分变动
-                </view> -->
               </view>
               <view>
                 <view class="scroll_box">
-                  <swiper class="swiper" circular="true" vertical="true" display-multiple-items='4' :autoplay="autoplay"
-                    :interval="interval" :duration="duration">
-                    <swiper-item v-for="(item, index) in recodeList" :key="index" class="swiper-l">
+                  <view class="swiper" circular="true" vertical="true" :autoplay="autoplay" :interval="interval"
+                    :duration="duration">
+                    <view v-for="(item, index) in memberList" :key="index" class="swiper-l">
                       <!-- <view class="swiper-item uni-bg-green" style="font-size:14rpx; width:200rpx">{{ item.create_time }}</view> -->
                       <view class="swiper-item uni-bg-green" style="font-size: 24rpx;margin-right:50rpx">{{
-                          item.createTime
+                          item.userName
                       }}</view>
-                      <!-- <view class="swiper-item uni-bg-green">{{ item.pointDes }}
-                      </view> -->
+                      <view class="swiper-item uni-bg-green">{{ item.mobile }}
+                      </view>
                       <!-- <view class="swiper-item uni-bg-green">{{ item.real_name }}**</view> -->
-                      <view class="swiper-item uni-bg-green" style="text-align: right;padding-right:40rpx">{{
-                          item.pointNum
-                      }}</view>
-                    </swiper-item>
-                  </swiper>
+                      <view class="swiper-item uni-bg-green" style="text-align: right;padding-right:20rpx">{{
+                          item.userScore
+                      }}万</view>
+                    </view>
+                  </view>
                 </view>
               </view>
             </view>
 
           </view>
         </view>
-        <view class="btn">
+        <view class="btn" @click="toBuy" v-if="payInfo.payStatus == '0' || payInfo.isExpired == '1'">
           <view>
             <view class="line1">
               <view class="icon">
@@ -96,31 +97,43 @@
             <view class="line2">(购买后可获得团队身价报告与身价证书)</view>
           </view>
         </view>
-        <view class="btn">
+        <view class="btn" @click="toBg" v-if="payInfo.payStatus == '1' && payInfo.isExpired == '0'">
           <view class="icon">
             <img :src=imgbg alt="">
           </view>
           <p> 团队身价报告</p>
         </view>
-        <view class="btn">
+        <view class="btn" @click="toZs" v-if="payInfo.payStatus == '1' && payInfo.isExpired == '0'">
           <view class="icon">
             <img :src=imgzs alt="">
           </view>
           <p> 团队身价证书</p>
         </view>
-        <view class="btn">
+        <view class="btn" @click="toMemberManage">
           <view class="icon">
             <img :src=imgxg alt="">
           </view>
           <p> 团队成员管理</p>
         </view>
+        <view class="btn" @click="teamBreak">
+          <view class="icon">
+            <img :src=imgzs alt="">
+          </view>
+          <p> 团队解散</p>
+        </view>
+        <!-- <view class="btn" @click="backList">
+          <view class="icon">
+            <img :src=icon2 alt="">
+          </view>
+          <p> 返回团队列表</p>
+        </view> -->
       </view>
     </view>
   </rcyj-page-view>
 </template>
 <script>
 import Vue from "vue";
-import { getPointRecord, pointDetail } from "@/api/common.js";
+import { teamDetail, teamPayInfo, teamMember, wechatAppletPay, teamBatchBreak } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 export default Vue.extend({
   components: {
@@ -130,8 +143,8 @@ export default Vue.extend({
     return {
       identity: "",
       more: this.$OSS_IMAGES_URL + '/20220617/more.png',
-      interval: 1000,
-      duration: 1000,
+      interval: 2000,
+      duration: 2000,
       autoplay: true,
       recodeList: '',
       allPoints: '',
@@ -146,25 +159,145 @@ export default Vue.extend({
       imgbg: this.$OSS_IMAGES_URL + '/20220617/bg1.png',
       imgxg: this.$OSS_IMAGES_URL + '/20220617/xg1.png',
       imgjf: this.$OSS_IMAGES_URL + '/20220617/jf1.png',
+      imgvip: this.$OSS_IMAGES_URL + '/20220617/vip1.png',
+
+      teamId: '',
+      teamInfo: {},
+      payInfo: {
+        isExpired: '0',
+        payStatus: '1'
+      },
+      memberList: []
     };
   },
-  onLoad() { },
+  onLoad: function (options) {
+
+    this.teamId = options.id
+  },
   onShow() {
     // let dictType = 'identity'
-    pointDetail().then((result) => {
-      console.log(result)
-      this.allPoints = result.allPoints
-      this.consumePoints = result.consumePoints
-      this.surplusPoints = result.surplusPoints
+    // let params = {
+    //   id:this.teamId
+    // }
+    teamDetail(this.teamId).then((data) => {
+      console.log(data)
+      this.teamInfo = data
     })
-    getPointRecord().then((result) => {
-      this.recodeList = result
+    teamPayInfo({ teamId: this.teamId }).then((data) => {
+      console.log(data)
+      this.payInfo = data
+    })
+    teamMember({ teamId: this.teamId }).then((data) => {
+      console.log(data)
+      this.memberList = data
     })
   },
   methods: {
     getIdentity(data) {
       this.identity = data.value;
     },
+    toBuy() {
+      const { teamId } = this
+      let that = this
+      wx.login({
+        success(res) {
+          if (res.code) {
+            console.log(res)
+            console.log(res.code)
+            //发起网络请求
+            // wx.request({
+            //   url: 'https://example.com/onLogin',
+            //   data: {
+            //     code: res.code
+            //   }
+            // })
+            let params1 = {
+              code: res.code,
+              orderType: "t_cert_report",
+              price: "0.01",
+              teamId: teamId,
+            }
+            wechatAppletPay(params1).then((data) => {
+              let params = JSON.parse(data.results)
+              wx.requestPayment(
+                {
+                  "timeStamp": params.timeStamp,
+                  "nonceStr": params.nonceStr,
+                  "package": params.package,
+                  "signType": "MD5",
+                  "paySign": params.sign,
+                  "success": function (res) {
+                    console.log(res)
+                    uni.showToast({
+                      icon: 'none',
+                      title: `购买成功！`,
+                      duration: 1000
+                    })
+                  },
+                  "fail": function (res) {
+                    console.log(res)
+                    uni.showToast({
+                      icon: 'none',
+                      title: `购买失败！`,
+                      duration: 1000
+                    })
+                  },
+                  "complete": function (res) {
+                    console.log(params1)
+                    console.log('wancheng')
+
+
+                    teamPayInfo({ teamId: params1.teamId }).then((data) => {
+                      console.log(data)
+                      that.payInfo = data
+                    })
+                  }
+                })
+            })
+          } else {
+            console.log('登录失败！' + res.errMsg)
+          }
+        }
+      })
+    },
+    toZs() {
+      // this.$changePage("pages/sjcertificateTeam/index");
+      this.$changePageR({
+        params: {
+          id: this.teamId,
+        },
+        url: "pages/sjcertificateTeam/index",
+      });
+    },
+    toBg() {
+      // this.$changePage("pages/teamSjpdf/index");
+      this.$changePageR({
+        params: {
+          id: this.teamId,
+        },
+        url: "pages/teamSjpdf/index",
+      });
+    },
+    toMemberManage() {
+      this.$changePageR({
+        params: {
+          id: this.teamId,
+        },
+        url: "pages/teamMemberManage/index",
+      });
+    },
+    teamBreak() {
+
+      const ids = [];
+      ids.push(this.teamId);
+      console.log(ids)
+      teamBatchBreak({
+        ids: ids.join(","),
+      }).then((data) => {
+        this.$changePage("pages/team/index");
+
+      })
+    }
   },
 });
 </script>
