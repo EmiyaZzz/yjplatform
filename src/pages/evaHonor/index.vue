@@ -31,7 +31,7 @@
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 荣誉名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.honorName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                  <u-input v-model="item.honorName" maxlength="50" placeholder-style="color:#9094A0;font-size:30rpx"
                     :clearable="false" :custom-style="uInputStyle" placeholder="请输入荣誉名称" />
                 </view>
               </view>
@@ -96,7 +96,7 @@ export default Vue.extend({
           honorName: "",
           honorLevel: {
             label: "请选择",
-            value:''
+            value: ''
           },
         },
       ],
@@ -142,14 +142,14 @@ export default Vue.extend({
           if (!result) return;
           this.dataHonor = [];
           let showList = result;
-        
+
           console.log(showList)
           showList.forEach((element1) => {
             this.honorSelectList.forEach((element2) => {
               // console.log(element1)
               //  console.log(element2)
               if (element1.honorLevel == element2.value) {
-                  console.log(element1.honorLevel)
+                console.log(element1.honorLevel)
                 //  element1.honorLevel = element2.label;
                 element1.honorLevel = element2;
                 //  element1.honorLevel.value = element2.value;
@@ -170,28 +170,39 @@ export default Vue.extend({
     },
     getIdentity(data) {
       this.identity = data.value;
+      console.log(this.identity)
     },
-    saveDataAndJump(url) {
+    async saveDataAndJump(url) {
       const { userId, dataHonor } = this;
       if (dataHonor.length == 0) {
         this.evaData(url)
-        return
       }
-      for (let i = 0; i < this.dataHonor.length; i++) {
-        let params = {
-          honorName: this.dataHonor[i].honorName,
-          honorLevel: this.dataHonor[i].honorLevel.value,
-        };
-        console.log(params);
-        if (dataHonor[i].id) {
-          const data = Object.assign({}, params, {
-            id: dataHonor[i].id,
-          });
-          honorUpdate(data).then((result) => { this.evaData(url) });
-        } else {
-          honorAdd(params).then((result) => { this.evaData(url)});
+      else {
+        for (let i = 0; i < this.dataHonor.length; i++) {
+          let params = {
+            honorName: this.dataHonor[i].honorName,
+            honorLevel: this.dataHonor[i].honorLevel.value,
+          };
+          console.log(params);
+          if (dataHonor[i].id) {
+            const data = Object.assign({}, params, {
+              id: dataHonor[i].id,
+            });
+             honorUpdate(data).then((result) => {
+              if (i == this.dataHonor.length-1) {
+                this.evaData(url)
+              }
+            });
+          } else {
+             honorAdd(params).then((result) => {
+              if (i == this.dataHonor.length-1) {
+                this.evaData(url)
+              }
+            });
+          }
         }
       }
+
     },
     pageBack() {
       this.$changePage({
@@ -203,12 +214,14 @@ export default Vue.extend({
     },
     evaData(url) {
       precisoEvaluate().then((res) => {
-         showScore(res,1500)
+        showScore(res, 1500)
         // uni.showToast({
         //   icon: 'none',
         //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
         //   duration: 1500
         // })
+        if(this.identity == '8')
+         url = "pages/evaSocietypostFor/index"
         setTimeout(() => {
           this.$changePage({
             params: {

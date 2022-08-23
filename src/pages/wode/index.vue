@@ -55,6 +55,12 @@
             </view>
           </view>
           <view class="fun-middle-bg">
+             <view class="btn1 firstbtn whitebg" @click="toRecharge()">
+              <view class="img-l">
+                <img :src=imgcz alt="" />
+              </view>
+              <p class="p1">积分充值</p>
+            </view>
             <view class="btn1 firstbtn whitebg" @click="toEvaRecord()">
               <view class="img-l">
                 <img :src=imgjl alt="" />
@@ -406,6 +412,22 @@ export default Vue.extend({
       else {
         this.isShow = false
         this.$changePage('pages/userScoreRecords/index')
+      }
+    },
+    toRecharge() {
+      if (!this.getToken) {
+        uni.showToast({
+          icon: 'none',
+          title: `未登录，即将前往登录页`,
+          duration: 2000
+        })
+        setTimeout(() => {
+          this.$changePage("pagesAuth/login/index");
+        }, 2000);
+      }
+      else {
+        this.isShow = false
+        this.$changePageR('pages/scoreRecharge/index')
       }
     },
     toOrderList() {

@@ -15,15 +15,16 @@
                 <view class="in-label"> 标题 </view>
                 <view class="flex-group at-row align-center space-between">
                   <u-input v-model="item.contributeName" maxlength="20"
-                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
-                    placeholder="请输入标题" />
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入标题" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.contributeDes" maxlength="30" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入描述" />
+                  <u-input v-model="item.contributeDes" maxlength="200"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入描述" />
                 </view>
               </view>
             </view>
@@ -117,22 +118,32 @@ export default Vue.extend({
       const { userId, dataTech } = this;
       if (dataTech.length == 0) {
         this.evaData(url)
-        return
       }
-      for (let i = 0; i < this.dataTech.length; i++) {
-        let params = {
-          contributeName: this.dataTech[i].contributeName,
-          contributeDes: this.dataTech[i].contributeDes,
-        };
-        if (dataTech[i].id) {
-          const data = Object.assign({}, params, {
-            id: dataTech[i].id,
-          });
-          contributeUpdate(data).then((result) => { this.evaData(url) });
-        } else {
-          contributeAdd(params).then((result) => { this.evaData(url) });
+      else {
+        for (let i = 0; i < this.dataTech.length; i++) {
+          let params = {
+            contributeName: this.dataTech[i].contributeName,
+            contributeDes: this.dataTech[i].contributeDes,
+          };
+          if (dataTech[i].id) {
+            const data = Object.assign({}, params, {
+              id: dataTech[i].id,
+            });
+            contributeUpdate(data).then((result) => {
+              if (i == this.dataTech.length - 1) {
+                this.evaData(url)
+              }
+            });
+          } else {
+            contributeAdd(params).then((result) => {
+              if (i == this.dataTech.length - 1) {
+                this.evaData(url)
+              }
+            });
+          }
         }
       }
+
     },
     pageBack() {
       this.$changePage({
@@ -144,7 +155,7 @@ export default Vue.extend({
     },
     evaData(url) {
       precisoEvaluate().then((res) => {
-         showScore(res,1500)
+        showScore(res, 1500)
         // uni.showToast({
         //   icon: 'none',
         //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',

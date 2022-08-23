@@ -33,7 +33,7 @@
                   <view class="p2" v-else> {{ complexScore }}万</view>
                 </view>
               </view>
-              <view class="chao">您的身价已经超过{{rankPercent}}的用户</view>
+              <view class="chao" v-if="scoreStatus != '0'">您的身价已经超过{{rankPercent}}的用户</view>
             </view>
             <!-- <view class="empty2" v-if="scoreStatus == '0'">
               快速评估是体验身价评估的快捷方式，请填写真实信息，以免影响评估结果和信用。您提供的信息仅用作您本人的身价评估，我们将按照国家有关法律法规的规定严格保密。

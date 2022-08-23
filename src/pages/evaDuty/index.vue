@@ -79,7 +79,7 @@
             <view class="in-box at-row align-center space-between" v-if="vocationalQualificationLevelS&&vocationalQualificationLevelS.value!='6'">
               <view class="in-label"> 职业资格名称 </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input v-model="vocationalQualificationName" maxlength="20"
+                <u-input v-model="vocationalQualificationName" maxlength="40"
                   placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
                   placeholder="请输入职业资格名称" />
               </view>

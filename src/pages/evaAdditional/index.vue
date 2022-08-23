@@ -5,7 +5,7 @@
        <official-account style="position:absolute;top:0;width:100%;height:168rpx;border:1rpx solid black;"></official-account>
       </view> -->
       <view class="body">
-        <top-info :key="new Date().getTime()" />
+        <top-info @getIdentityInfo="getIdentity" />
         <view class="box-panel">
           <view class="data-form-content">
             <view class="in-box at-row align-center space-between">
@@ -66,7 +66,8 @@
               </view>
               <view>
                 <view class="select-group" @click="$refs.securityPaymentSelect.isShow = true">
-                 <view v-if="securityPaymentS.label">{{ securityPaymentS.label }}</view> <view v-else>请选择</view>
+                  <view v-if="securityPaymentS.label">{{ securityPaymentS.label }}</view>
+                  <view v-else>请选择</view>
                 </view>
               </view>
             </view>
@@ -76,7 +77,8 @@
               </view>
               <view>
                 <view class="select-group" @click="$refs.securitySpendSelect.isShow = true">
-                <view v-if="securitySpendS.label"> {{ securitySpendS.label }}</view> <view v-else>请选择</view>
+                  <view v-if="securitySpendS.label"> {{ securitySpendS.label }}</view>
+                  <view v-else>请选择</view>
                 </view>
               </view>
             </view>
@@ -86,7 +88,99 @@
               </view>
               <view class="warp-group">
                 <u-input v-model="personalIncomeTax" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
-                  :clearable="false" :custom-style="uInputStyle" placeholder="请输入个人所得税" />
+                  :clearable="false" :custom-style="uInputStyleLeft" placeholder="请输入个人所得税" />
+              </view>
+            </view>
+            <view v-if="identity == '8'">
+              <view class="title">来中国的原因</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in foreignInfo.comeReason" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem1(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label">原因</view> -->
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.content" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyleLeft" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(foreignInfo.comeReason)" />
+              </view>
+            </view>
+            <view v-if="identity == '8'">
+              <view class="title">带来了哪些先进技术</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in foreignInfo.comeTech" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem2(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label">原因</view> -->
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.content" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyleLeft" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(foreignInfo.comeTech)" />
+              </view>
+            </view>
+            <view v-if="identity == '8'">
+              <view class="title">在中国解决了哪些那题</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in foreignInfo.solvePro" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem3(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label">原因</view> -->
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.content" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyleLeft" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(foreignInfo.solvePro)" />
+              </view>
+            </view>
+
+            <view v-if="identity == '8'">
+              <view class="title">在中国创办了什么企业</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in foreignInfo.comeCompany" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem4(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label">原因</view> -->
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.batchContent" maxlength="20"
+                      placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false"
+                      :custom-style="uInputStyleLeft" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(foreignInfo.comeCompany)" />
+              </view>
+            </view>
+
+            <view v-if="identity == '8'">
+              <view class="title">在中国发展了哪些特长</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in foreignInfo.specialty" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteItem5(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label">原因</view> -->
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.batchContent" maxlength="20"
+                      placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false"
+                      :custom-style="uInputStyleLeft" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(foreignInfo.specialty)" />
+              </view>
+            </view>
+            <view class="in-box at-row align-center space-between" v-if="identity == '8'">
+              <view class="in-label"> 累计在中国的时间(年) </view>
+              <view class="flex-group at-row align-center space-between">
+                <u-input v-model="foreignInfo.comeDuration" maxlength="200"
+                  placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                  placeholder="请输入" />
               </view>
             </view>
             <view class="in-box at-row align-center space-between">
@@ -141,7 +235,27 @@ import {
   queryDictDataByType,
   queryHighArea,
   upload,
-  precisoEvaluate
+  precisoEvaluate,
+  foreignReasonAdd,
+  foreignReasonUpdate,
+  foreignReasonList,
+  foreignReasonDelete,
+  foreignTechDelete,
+  foreignTechAdd,
+  foreignTechUpdate,
+  foreignTechList,
+  foreignProblemAdd,
+  foreignProblemUpdate,
+  foreignProblemDelete,
+  foreignProblemList,
+  foreignEnterpriseDelete,
+  foreignEnterpriseAdd,
+  foreignEnterpriseUpdate,
+  foreignEnterpriseList,
+  foreignSpecialtyDelete,
+  foreignSpecialtyAdd,
+  foreignSpecialtyUpdate,
+  foreignSpecialtyList
 } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
@@ -173,6 +287,7 @@ export default Vue.extend({
         textAlign: 'left'
       },
       getToken: this.$ls.get('KEY_ACCESS_TOKEN'),
+      identity: '',
       userId: '',
       healthStatusS: '',
       healthStatusList: [],
@@ -217,6 +332,40 @@ export default Vue.extend({
         label: '否'
       }
       ],
+      imgArrow: this.$OSS_IMAGES_URL + "/20220617/arror.png",
+      foreignInfo: {
+        comeReason: [
+          {
+            id: "",
+            content: "",
+          },
+        ],
+        comeTech: [
+          {
+            id: "",
+            content: "",
+          },
+        ],
+        solvePro: [
+          {
+            id: "",
+            content: "",
+          },
+        ],
+        comeCompany: [
+          {
+            id: "",
+            content: "",
+          },
+        ],
+        specialty: [
+          {
+            id: "",
+            content: "",
+          },
+        ],
+        comeDuration: '',
+      }
       //----------------------
     }
   },
@@ -229,6 +378,12 @@ export default Vue.extend({
     this.init()
   },
   methods: {
+    getIdentity(data) {
+      console.log("parent");
+      console.log(data);
+      this.identity = data.value;
+      console.log(this.identity);
+    },
     async init() {
       this.getToken = this.$ls.get('KEY_ACCESS_TOKEN')
       console.log('token======' + this.getToken)
@@ -284,6 +439,21 @@ export default Vue.extend({
         }
       })
       if (this.getToken) {
+        await foreignReasonList().then((data) => {
+          this.foreignInfo.comeReason = data
+        })
+        await foreignTechList().then((data) => {
+          this.foreignInfo.comeTech = data
+        })
+        await foreignProblemList().then((data) => {
+          this.foreignInfo.solvePro = data
+        })
+        await foreignEnterpriseList().then((data) => {
+          this.foreignInfo.comeCompany = data
+        })
+        await foreignSpecialtyList().then((data) => {
+          this.foreignInfo.specialty = data
+        })
         await additionalDetail().then((data) => {
           //  console.log(data)
           if (!data)
@@ -329,7 +499,74 @@ export default Vue.extend({
         })
       }
     },
-
+    additem(group) {
+      group.push({
+        content: ""
+      });
+      for (let i = 0; i < group.length; i++) {
+        group[i].index = i;
+      }
+    },
+    deleteItem1(item) {
+      if (!item.id) this.foreignInfo.comeReason.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        foreignReasonDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    deleteItem2(item) {
+      if (!item.id) this.foreignInfo.comeTech.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        foreignTechDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    deleteItem3(item) {
+      if (!item.id) this.foreignInfo.solvePro.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        foreignProblemDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    deleteItem4(item) {
+      if (!item.id) this.foreignInfo.comeCompany.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        foreignEnterpriseDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    deleteItem5(item) {
+      if (!item.id) this.foreignInfo.specialty.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        foreignSpecialtyDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
     societyPostLevelConfirm(result) {
       this.healthStatusS = result[0]
     },
@@ -360,7 +597,7 @@ export default Vue.extend({
         this.entrepreneurialExperience = ''
       }
     },
-    exitAndSave() {
+    async exitAndSave() {
       this.checkIs()
       const {
         userId,
@@ -372,8 +609,15 @@ export default Vue.extend({
         securitySpendS,
         personalIncomeTax,
         entrepreneurialExperienceS,
-        entrepreneurialExperience
+        entrepreneurialExperience,
+        foreignInfo
       } = this
+
+      await this.saveList(foreignInfo.comeReason, 'reasonComeChina', foreignReasonUpdate, foreignReasonAdd)
+      await this.saveList(foreignInfo.comeTech, 'technologyName', foreignTechUpdate, foreignTechAdd)
+      await this.saveList(foreignInfo.solvePro, 'solveProblemContent', foreignProblemUpdate, foreignProblemAdd)
+      await this.saveList(foreignInfo.comeCompany, 'enterpriseName', foreignEnterpriseUpdate, foreignEnterpriseAdd)
+      await this.saveList(foreignInfo.specialty, 'specialtyContent', foreignSpecialtyUpdate, foreignSpecialtyAdd)
       const params = {
         "id": userId,
         "healthStatus": healthStatusS.value,
@@ -388,7 +632,7 @@ export default Vue.extend({
         "entrepreneurialExperienceDes": entrepreneurialExperience
       }
       console.log(params)
-      additionalUpdate(params).then((data) => {
+     await additionalUpdate(params).then((data) => {
         // this.$changePage({
         //   // params: {
         //   //   data: this.identityType
@@ -396,7 +640,7 @@ export default Vue.extend({
         //   url: '/pages/evaWealthInfo/index'
         // })
         precisoEvaluate().then((res) => {
-           showScore(res,1500)
+          showScore(res, 1500)
           // uni.showToast({
           //   icon: 'none',
           //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
@@ -412,15 +656,33 @@ export default Vue.extend({
 
       });
     },
+    saveList(list, item, add, update) {
+      for (let i = 0; i < list.length; i++) {
+        let paramsD = {
+          item: list[i].content,
+        };
+        console.log(list[i])
+        if (list[i].id) {
+          const data = Object.assign({}, paramsD, {
+            id: list[i].id,
+          });
+          update(data).then((result) => { console.log(item + result + 'update') });
+        } else {
+          add(paramsD).then((result) => { console.log(item + result + 'add') });
+        }
+      }
+    },
     pageBack() {
+      let urlc = this.identity == '8'?  "pages/evaSocietypostFor/index": "pages/evaSocietypost/index"
+      
       this.$changePage({
         params: {
           data: this.identity,
         },
-        url: "pages/evaSocietypost/index",
+        url: urlc,
       });
     },
-    evaluateSj() {
+    async evaluateSj() {
       this.checkIs()
       const {
         userId,
@@ -432,8 +694,30 @@ export default Vue.extend({
         securitySpendS,
         personalIncomeTax,
         entrepreneurialExperienceS,
-        entrepreneurialExperience
+        entrepreneurialExperience,
+        foreignInfo
       } = this
+
+      await this.saveList(foreignInfo.comeReason, 'reasonComeChina', foreignReasonUpdate, foreignReasonAdd)
+      await this.saveList(foreignInfo.comeTech, 'technologyName', foreignTechUpdate, foreignTechAdd)
+      await this.saveList(foreignInfo.solvePro, 'solveProblemContent', foreignProblemUpdate, foreignProblemAdd)
+      await this.saveList(foreignInfo.comeCompany, 'enterpriseName', foreignEnterpriseUpdate, foreignEnterpriseAdd)
+      await this.saveList(foreignInfo.specialty, 'specialtyContent', foreignSpecialtyUpdate, foreignSpecialtyAdd)
+      // for (let i = 0; i < foreignInfo.comeReason.length; i++) {
+      //   let paramsD = {
+      //     'reasonComeChina': foreignInfo.comeReason[i].content,
+      //   };
+      //   console.log(paramsD)
+      //   if (foreignInfo.comeReason[i].id) {
+      //     const data = Object.assign({}, paramsD, {
+      //       id: foreignInfo.comeReason[i].id,
+      //     });
+      //     foreignReasonUpdate(data).then((result) => { });
+      //   } else {
+      //     foreignReasonAdd(paramsD).then((result) => { });
+      //   }
+      // }
+
       const params = {
         "id": userId,
         "healthStatus": healthStatusS.value,
@@ -448,9 +732,9 @@ export default Vue.extend({
         "entrepreneurialExperienceDes": entrepreneurialExperience
       }
       console.log(params)
-      additionalUpdate(params).then((data) => {
+      await additionalUpdate(params).then((data) => {
         precisoEvaluate().then((res) => {
-           showScore(res,1500)
+          showScore(res, 1500)
           // uni.showToast({
           //   icon: 'none',
           //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',

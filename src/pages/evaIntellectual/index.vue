@@ -11,22 +11,25 @@
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利名称" />
+                  <u-input v-model="item.patentName" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利号 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利号" />
+                  <u-input v-model="item.patentNum" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利号" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利描述" />
+                  <u-input v-model="item.patentDes" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利描述" />
                 </view>
               </view>
             </view>
@@ -40,22 +43,25 @@
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利名称 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentName" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利名称" />
+                  <u-input v-model="item.patentName" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利名称" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利号 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentNum" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利号" />
+                  <u-input v-model="item.patentNum" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利号" />
                 </view>
               </view>
               <view class="in-box at-row align-center space-between">
                 <view class="in-label"> 专利描述 </view>
                 <view class="flex-group at-row align-center space-between">
-                  <u-input v-model="item.patentDes" maxlength="20" placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx"
-                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入专利描述" />
+                  <u-input v-model="item.patentDes" maxlength="20"
+                    placeholder-style="color:$uni-text-color-placeholder;font-size:30rpx" :clearable="false"
+                    :custom-style="uInputStyle" placeholder="请输入专利描述" />
                 </view>
               </view>
             </view>
@@ -165,8 +171,8 @@ export default Vue.extend({
     saveDataAndJump(url) {
       const { userId, dataPatent, dataPatented } = this;
 
-      if (dataPatent.length == 0) {
-       this.evaData(url)
+      if (dataPatent.length == 0&&dataPatented.length ==0) {
+        this.evaData(url)
         return
       }
       for (let i = 0; i < this.dataPatent.length; i++) {
@@ -181,7 +187,9 @@ export default Vue.extend({
             id: dataPatent[i].id,
           });
           intellectualUpdate(data).then((result) => {
-            this.evaData(url)
+            if (i == this.dataPatent.length - 1) {
+              this.evaData(url)
+            }
           }).catch((err) => {
             return false
             console.log('UpdateErr')
@@ -189,7 +197,9 @@ export default Vue.extend({
           });
         } else {
           intellectualAdd(params).then((result) => {
-            this.evaData(url)
+            if (i == this.dataPatent.length - 1) {
+              this.evaData(url)
+            }
           }).catch((err) => {
 
             console.log('AddErr')
@@ -211,7 +221,9 @@ export default Vue.extend({
             id: dataPatented[i].id,
           });
           intellectualUpdate(data).then((result) => {
-            this.evaData(url)
+            if (i == this.dataPatented.length - 1) {
+              this.evaData(url)
+            }
           }).catch((err) => {
             return false
             console.log('UpdateErr2')
@@ -219,7 +231,9 @@ export default Vue.extend({
           });
         } else {
           intellectualAdd(params).then((result) => {
-            this.evaData(url)
+            if (i == this.dataPatented.length - 1) {
+              this.evaData(url)
+            }
           }).catch((err) => {
             return false
             console.log('addErr2')
@@ -239,7 +253,7 @@ export default Vue.extend({
 
     evaData(url) {
       precisoEvaluate().then((res) => {
-         showScore(res,1500)
+        showScore(res, 1500)
         // uni.showToast({
         //   icon: 'none',
         //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',

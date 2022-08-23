@@ -141,43 +141,63 @@ export default Vue.extend({
     saveDataAndJump(url) {
       const { userId, dataTech, dataTeched } = this;
 
-     if (dataTech.length == 0) {
-       this.evaData(url)
-        return
+      if (dataTech.length == 0 && dataTeched.length == 0) {
+        this.evaData(url)
+
       }
-      for (let i = 0; i < this.dataTech.length; i++) {
-        let params = {
-          technologicalAchievementType: "2",
-          technologicalAchievementName:
-            this.dataTech[i].technologicalAchievementName,
-          technologicalAchievementDes:
-            this.dataTech[i].technologicalAchievementDes,
-        };
-        if (dataTech[i].id) {
-          const data = Object.assign({}, params, {
-            id: dataTech[i].id,
-          });
-          techUpdate(data).then((result) => { this.evaData(url) });
-        } else {
-          techAdd(params).then((result) => { this.evaData(url) });
+      else if (dataTech.length != 0) {
+        for (let i = 0; i < this.dataTech.length; i++) {
+          let params = {
+            technologicalAchievementType: "2",
+            technologicalAchievementName:
+              this.dataTech[i].technologicalAchievementName,
+            technologicalAchievementDes:
+              this.dataTech[i].technologicalAchievementDes,
+          };
+          if (dataTech[i].id) {
+            const data = Object.assign({}, params, {
+              id: dataTech[i].id,
+            });
+            techUpdate(data).then((result) => {
+              if (i == this.dataTech.length - 1) {
+                this.evaData(url)
+              }
+            });
+          } else {
+            techAdd(params).then((result) => {
+              if (i == this.dataTech.length - 1) {
+                this.evaData(url)
+              }
+            });
+          }
         }
       }
-      for (let i = 0; i < dataTeched.length; i++) {
-        let params = {
-          id: dataTeched[i].id,
-          technologicalAchievementType: "1",
-          technologicalAchievementName:
-            dataTeched[i].technologicalAchievementName,
-          technologicalAchievementDes:
-            dataTeched[i].technologicalAchievementDes,
-        };
-        if (dataTeched[i].id) {
-          const data = Object.assign({}, params, {
+      else if (dataTeched.length != 0) {
+        for (let i = 0; i < dataTeched.length; i++) {
+          let params = {
             id: dataTeched[i].id,
-          });
-          techUpdate(data).then((result) => { this.evaData(url) });
-        } else {
-          techAdd(params).then((result) => { this.evaData(url) });
+            technologicalAchievementType: "1",
+            technologicalAchievementName:
+              dataTeched[i].technologicalAchievementName,
+            technologicalAchievementDes:
+              dataTeched[i].technologicalAchievementDes,
+          };
+          if (dataTeched[i].id) {
+            const data = Object.assign({}, params, {
+              id: dataTeched[i].id,
+            });
+            techUpdate(data).then((result) => {
+              if (i == this.dataTeched.length - 1) {
+                this.evaData(url)
+              }
+            });
+          } else {
+            techAdd(params).then((result) => {
+              if (i == this.dataTeched.length - 1) {
+                this.evaData(url)
+              }
+            });
+          }
         }
       }
     },
@@ -189,94 +209,93 @@ export default Vue.extend({
         url: "pages/evaIntellectual/index",
       });
     },
-    evaData(url)
-    {
-    precisoEvaluate().then((res) => {
-       showScore(res,1500)
-      // uni.showToast({
-      //   icon: 'none',
-      //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
-      //   duration: 1500
-      // })
-      setTimeout(() => {
-        this.$changePage({
-          params: {
-            data: this.identity,
-          },
-          url: url//"pages/evaContribute/index",
-        });
-      }, 1500);
-    });
-  },
-  evaluateSj() {
-  this.saveDataAndJump("pages/evaContribute/index");
-  //  wx.switchTab({
-  //   url:'../evaEducation/index'
-  // })
-},
-  exitAndSave() {
-  this.saveDataAndJump(0);
-  // precisoEvaluate().then((res) => {
-  //   uni.showToast({
-  //     icon: 'none',
-  //     title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
-  //     duration: 1500
-  //   })
-  //   setTimeout(() => {
-  //     wx.switchTab({
-  //       url: "../index/index",
-  //     });
-  //   }, 1500);
-  // });
-},
-  additem() {
-    this.dataTech.push({
-      index: "",
-      technologicalAchievementType: "",
-      technologicalAchievementName: "",
-      patentNum: "",
-      technologicalAchievementDes: "",
-    });
-    for(let i = 0; i< this.dataTech.length; i++) {
-  this.dataTech[i].index = i;
-}
+    evaData(url) {
+      precisoEvaluate().then((res) => {
+        showScore(res, 1500)
+        // uni.showToast({
+        //   icon: 'none',
+        //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+        //   duration: 1500
+        // })
+        setTimeout(() => {
+          this.$changePage({
+            params: {
+              data: this.identity,
+            },
+            url: url//"pages/evaContribute/index",
+          });
+        }, 1500);
+      });
     },
-additemEd() {
-  this.dataTeched.push({
-    index: "",
-    technologicalAchievementType: "",
-    technologicalAchievementName: "",
-    patentNum: "",
-    technologicalAchievementDes: "",
-  });
-  for (let i = 0; i < this.dataTeched.length; i++) {
-    this.dataTeched[i].index = i;
-  }
-},
-deleteItem1(item) {
-  if (!item.id) this.dataTech.splice(item.index, 1);
-  else {
-    const ids = [];
-    ids.push(item.id);
-    techDelete({
-      ids: ids.join(","),
-    }).then((result) => {
-      this.init();
-    });
-  }
-},
-deleteItem2(item) {
-  if (!item.id) this.dataTeched.splice(item.index, 1);
-  else {
-    const ids = [];
-    ids.push(item.id);
-    techDelete({
-      ids: ids.join(","),
-    }).then((result) => {
-      this.init();
-    });
-  }
-},
+    evaluateSj() {
+      this.saveDataAndJump("pages/evaContribute/index");
+      //  wx.switchTab({
+      //   url:'../evaEducation/index'
+      // })
+    },
+    exitAndSave() {
+      this.saveDataAndJump(0);
+      // precisoEvaluate().then((res) => {
+      //   uni.showToast({
+      //     icon: 'none',
+      //     title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
+      //     duration: 1500
+      //   })
+      //   setTimeout(() => {
+      //     wx.switchTab({
+      //       url: "../index/index",
+      //     });
+      //   }, 1500);
+      // });
+    },
+    additem() {
+      this.dataTech.push({
+        index: "",
+        technologicalAchievementType: "",
+        technologicalAchievementName: "",
+        patentNum: "",
+        technologicalAchievementDes: "",
+      });
+      for (let i = 0; i < this.dataTech.length; i++) {
+        this.dataTech[i].index = i;
+      }
+    },
+    additemEd() {
+      this.dataTeched.push({
+        index: "",
+        technologicalAchievementType: "",
+        technologicalAchievementName: "",
+        patentNum: "",
+        technologicalAchievementDes: "",
+      });
+      for (let i = 0; i < this.dataTeched.length; i++) {
+        this.dataTeched[i].index = i;
+      }
+    },
+    deleteItem1(item) {
+      if (!item.id) this.dataTech.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        techDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    deleteItem2(item) {
+      if (!item.id) this.dataTeched.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        techDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
   },
 });
 </script>

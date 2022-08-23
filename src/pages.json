@@ -140,6 +140,14 @@
 			}
 		},
 		{
+			"path": "pages/evaSocietypostFor/index",
+			"style": {
+				"navigationBarTitleText": "身价评估-外籍人员社会职务",
+				"navigationBarBackgroundColor": "#fff",
+				"navigationBarTextStyle": "black"
+			}
+		},
+		{
 			"path": "pages/evaAdditional/index",
 			"style": {
 				"navigationBarTitleText": "身价评估-辅助信息",
@@ -279,6 +287,12 @@
 			"path": "pages/teamMemberManage/index",
 			"style": {
 				"navigationBarTitleText": "团队成员管理"
+			}
+		},
+		{
+			"path": "pages/scoreRecharge/index",
+			"style": {
+				"navigationBarTitleText": "积分充值"
 			}
 		}
 	],

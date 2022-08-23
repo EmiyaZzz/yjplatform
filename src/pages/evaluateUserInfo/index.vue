@@ -33,7 +33,31 @@
                 </view>
               </view>
             </view>
-            <view class="in-box at-row align-center space-between">
+
+            <view v-if="identity == '8'">
+              <view class="in-box at-row align-center space-between">
+                <view class="in-label"> 国籍 </view>
+                <view class="flex-group at-row align-center space-between">
+                  <u-input v-model="nationalityF" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                    :clearable="false" :custom-style="uInputStyle" placeholder="请输入国籍以模糊查询" />
+                </view>
+                <!-- <view class="img-l">
+                  <img :src=imgda alt="" />
+                </view> -->
+              </view>
+              <view class="in-box at-row align-center space-between">
+                <view class="in-label"> </view>
+                <view>
+                  <view class="select-group" @click="$refs.countrySelect.isShow = true">
+                    <view v-if="country.label">
+                      {{ country.label }}
+                    </view>
+                    <view v-if="!country.label">请选择国籍</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="in-box at-row align-center space-between" v-else>
               <view class="in-label"> 民族 </view>
               <view class="flex-group at-row align-center space-between">
                 <u-input v-model="nationality" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
@@ -94,7 +118,7 @@
                 <!-- <rcjy-input class="showitem" :disabled="true" placeholder="请选择单位所在省市区" 
                   :inval="companyAreaName">
                 </rcjy-input> -->
-                  <u-input v-model="companyAreaName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                <u-input v-model="companyAreaName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="请选择单位所在省市区" />
                 <rcyj-picker-districts ref="districts" @confirm="districtsConfirm" />
               </view>
@@ -187,6 +211,8 @@
           <rcyj-picker-single ref="checkPark" :list="check" @confirm="checkParkConfirm" />
           <rcyj-picker-single ref="checkNational" :list="check" @confirm="checkNationalConfirm" />
           <rcyj-picker-single ref="highTechAreas" :list="highTechAreas" @confirm="checkNhighTechAreasConfirm" />
+
+          <rcyj-picker-single ref="countrySelect" :list="countryList" @confirm="countryConfirm" />
         </view>
       </view>
     </view>
@@ -200,7 +226,8 @@ import {
   queryDictDataByType,
   queryHighArea,
   upload,
-  precisoEvaluate
+  precisoEvaluate,
+  gdpList
 } from "@/api/common.js";
 import TopInfo from "../components/top-info/top-info.vue";
 import MinePop from "../components/mine-pop/mine-pop.vue";
@@ -220,6 +247,7 @@ export default Vue.extend({
   data() {
     return {
       action: config.gatewayUrl + "/assess/oss/uploadReturnUrl",
+      imgda: this.$OSS_IMAGES_URL + '/20220617/da1.png',
       current: 0,
       uInputStyle: {
         color: "#9094A0",
@@ -234,7 +262,11 @@ export default Vue.extend({
       idCardPic: "",
       // 选择的性别
       sexS: "",
-      nationality: "",
+      nationality: "", //民族
+      nationalityF: "",//模糊查询的国籍
+      country: {
+        label: '', value: ''
+      }, //国籍
       hometown: "",
       occupationCategoryS: "", //职业类别
       companyName: "",
@@ -257,6 +289,8 @@ export default Vue.extend({
       companyCityId: 0, //工作城市id
       companyProvinceId: 0, //工作省份id
       companyProvinceName: "", //工作省份名称
+
+      countryList: [],
 
       check: [
         {
@@ -365,6 +399,20 @@ export default Vue.extend({
       //----------------------
     };
   },
+  watch: {
+    nationalityF(newCo, oldCo) {
+      gdpList({ countryName: newCo }).then((data) => {
+        this.countryList = []
+        for (let i = 0; i < data.length; i++) {
+          let temp = {};
+          temp.label = data[i].country;
+          temp.value = data[i].gdpAmount;
+          this.countryList.push(temp);
+        }
+        // this.countryList = data
+      })
+    }
+  },
   onLoad() {
     this.init();
   },
@@ -395,8 +443,18 @@ export default Vue.extend({
           this.industryType.push(temp);
         }
       });
+      await gdpList().then((data) => {
+        for (let i = 0; i < data.length; i++) {
+          let temp = {};
+          temp.label = data[i].country;
+          temp.value = data[i].gdpAmount;
+          this.countryList.push(temp);
+        }
+        // this.countryList = data
+      })
       if (this.getToken) {
         await getUserInfoApi().then((data) => {
+          console.log(data)
           this.userId = data.id;
           this.realName = data.realName;
           this.idCard = data.idCard;
@@ -407,6 +465,8 @@ export default Vue.extend({
             }
           });
           this.nationality = data.nationality;
+          // this.nationalityF = data.country;
+          this.country.label = data.country
           this.hometown = data.hometown;
           this.birthday = data.birthday;
           this.idCardPic = data.idCardPic;
@@ -554,6 +614,8 @@ export default Vue.extend({
         idCardPic,
         sexS,
         nationality,
+        nationalityF,
+        country,
         hometown,
         birthday,
         occupationCategoryS,
@@ -580,6 +642,7 @@ export default Vue.extend({
         idCardPic: idCardPic,
         sex: sexS.value,
         nationality: nationality,
+        country: country.label,
         hometown: hometown,
 
         birthday: birthday,
@@ -606,7 +669,7 @@ export default Vue.extend({
       userInfoAdd(params)
         .then((data) => {
           precisoEvaluate().then((res) => {
-            showScore(res,1500)
+            showScore(res, 1500)
             // uni.showToast({
             //   icon: 'none',
             //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',
@@ -643,6 +706,10 @@ export default Vue.extend({
     },
     sexConfirm(result) {
       this.sexS = result[0];
+    },
+    countryConfirm(result) {
+      this.country = result[0];
+      console.log(this.country)
     },
     workConfirm(result) {
       this.occupationCategoryS = result[0];
@@ -697,6 +764,7 @@ export default Vue.extend({
         idCardPic,
         sexS,
         nationality,
+        country,
         hometown,
         birthday,
         occupationCategoryS,
@@ -731,6 +799,7 @@ export default Vue.extend({
         idCardPic: idCardPic,
         sex: sexS.value,
         nationality: nationality,
+        country: country.label,
         hometown: hometown,
 
         birthday: birthday,
@@ -757,7 +826,7 @@ export default Vue.extend({
       userInfoAdd(params)
         .then((data) => {
           precisoEvaluate().then((res) => {
-             showScore(res,1500)
+            showScore(res, 1500)
             // uni.showToast({
             //   icon: 'none',
             //   title: res >= 0 ? (res == 0 ? '您的身价没有变化' : `恭喜您，身价提升了` + res + '万') : `很遗憾，身价降低了了` + res + '万',

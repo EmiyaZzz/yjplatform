@@ -297,7 +297,7 @@ export const batchDelete = (data) => {  //new
 export const batchAdd = (data) => {  //new
   return post(`${apiPath}/assess/supplement/add`, data )
 }
-//补充信息添加
+//补充信息更新
 export const batchupdate = (data) => {  //new
   return post(`${apiPath}/assess/supplement/update`, data)
 }
@@ -374,6 +374,113 @@ export const wechatAppletPay = (data) => {  //new
   return post(`${apiPath}/assess/wechatApplet/pay`, data, config)
 }
 //-------------------------------------------------------
+//根据国家名称查询国家列表
+export const gdpList = (data) => {  //new
+  return get(`${apiPath}/assess/gdp/data/list`,{ params: data } )
+}
+//-------------------------------------------------------
+//外籍人员来中国原因删除
+export const foreignReasonDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/reason/batchDelete`, data, { www: 1 })
+}
+//外籍人员来中国原因添加
+export const foreignReasonAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/reason/add`, data )
+}
+//外籍人员来中国原因更新
+export const foreignReasonUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/reason/update`, data)
+}
+//外籍人员来中国原因列表
+export const foreignReasonList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/reason/list`, { params: data })
+}
+//-------------------------------------------------------
+//外籍人员来中国技术删除
+export const foreignTechDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/technology/batchDelete`, data, { www: 1 })
+}
+//外籍人员来中国技术添加
+export const foreignTechAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/technology/add`, data )
+}
+//外籍人员来中国技术更新
+export const foreignTechUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/technology/update`, data)
+}
+//外籍人员来中国技术列表
+export const foreignTechList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/technology/list`, { params: data })
+}
+//-------------------------------------------------------
+//外籍人员来中国解决问题删除
+export const foreignProblemDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/batchDelete`, data, { www: 1 })
+}
+//外籍人员来中国解决问题添加
+export const foreignProblemAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/add`, data )
+}
+//外籍人员来中国解决问题更新
+export const foreignProblemUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/update`, data)
+}
+//外籍人员来中国解决问题列表
+export const foreignProblemList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/problem/list`, { params: data })
+}
+//-------------------------------------------------------
+//外籍人员来中国企业删除
+export const foreignEnterpriseDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/batchDelete`, data, { www: 1 })
+}
+//外籍人员来中国企业添加
+export const foreignEnterpriseAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/add`, data )
+}
+//外籍人员来中国企业更新
+export const foreignEnterpriseUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/problem/update`, data)
+}
+//外籍人员来中国企业列表
+export const foreignEnterpriseList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/problem/list`, { params: data })
+}
+//-------------------------------------------------------
+//外籍人员来中国发挥特长删除
+export const foreignSpecialtyDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/specialty/batchDelete`, data, { www: 1 })
+}
+//外籍人员来中国发挥特长添加
+export const foreignSpecialtyAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/specialty/add`, data )
+}
+//外籍人员来中国发挥特长更新
+export const foreignSpecialtyUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/specialty/update`, data)
+}
+//外籍人员来中国发挥特长列表
+export const foreignSpecialtyList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/specialty/list`, { params: data })
+}
+//-------------------------------------------------------
+//外籍人员社会职务添加
+export const foreignPostAdd = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/societypost/add`, data )
+}
+//外籍人员社会职务更新
+export const foreignPostUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/societypost/update`, data)
+}
+//外籍人员社会职务删除
+export const foreignPostDelete = (data) => {  //new
+  return post(`${apiPath}/assess/foreign/societypost/batchDelete`, data, { www: 1 })
+}
+//外籍人员社会职务列表
+export const foreignPostList = (data) => {  //new
+  return get(`${apiPath}/assess/foreign/societypost/list`, { params: data })
+}
+//----------------------------------------------------------------------
 export const getRankListApi = () => {
   return get(`${apiPath}/assess/getRankList`)
 }

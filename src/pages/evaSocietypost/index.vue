@@ -38,7 +38,7 @@
                 职务全称
               </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input v-model="societyPostName" maxlength="30" placeholder-style="color:$uni-text-color;font-size:30rpx"
+                <u-input v-model="societyPostName" maxlength="200" placeholder-style="color:$uni-text-color;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="全称" />
               </view>
             </view>
@@ -73,7 +73,7 @@
                 全称
               </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input v-model="zxwyName" maxlength="30" placeholder-style="color:$uni-text-color;font-size:30rpx"
+                <u-input v-model="zxwyName" maxlength="200" placeholder-style="color:$uni-text-color;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="全称" />
               </view>
             </view>
@@ -107,7 +107,7 @@
                 全称
               </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input v-model="rdName" maxlength="30" placeholder-style="color:$uni-text-color;font-size:30rpx"
+                <u-input v-model="rdName" maxlength="200" placeholder-style="color:$uni-text-color;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="全称" />
               </view>
             </view>
@@ -142,7 +142,7 @@
                 全称
               </view>
               <view class="flex-group at-row align-center space-between">
-                <u-input v-model="ddbName" maxlength="30" placeholder-style="color:$uni-text-color;font-size:30rpx"
+                <u-input v-model="ddbName" maxlength="200" placeholder-style="color:$uni-text-color;font-size:30rpx"
                   :clearable="false" :custom-style="uInputStyle" placeholder="全称" />
               </view>
             </view>
