@@ -198,7 +198,10 @@ export const eduexperienceUpdate = (data) => {  //new
 export const precisoEvaluate = (data) => {  //new
   return post(`${apiPath}/assess/assess/precisoEvaluate`, data)
 }
-
+//查询人均身价平均值
+export const argScore = (data) => {  //new
+  return get(`${apiPath}/assess/assess/argAssessScore`, { params: data })
+}
 //综合身价报告
 export const zhTalentReportSend = (data) => {  //new
   return get(`${apiPath}/assess/assess/zhTalentReport`, { params: data })
@@ -479,6 +482,23 @@ export const foreignPostDelete = (data) => {  //new
 //外籍人员社会职务列表
 export const foreignPostList = (data) => {  //new
   return get(`${apiPath}/assess/foreign/societypost/list`, { params: data })
+}
+//----------------------------------------------------------------------
+//工作经历删除
+export const workExpDelete = (data) => {  //new
+  return post(`${apiPath}/assess/work/batchDelete`, data, { www: 1 })
+}
+//工作经历添加
+export const workExpAdd = (data) => {  //new
+  return post(`${apiPath}/assess/work/add`, data )
+}
+///工作经历列表
+export const workExpList = (data) => {  //new
+  return get(`${apiPath}/assess/work/list`, { params: data })
+}
+//工作经历修改
+export const workExpUpdate = (data) => {  //new
+  return post(`${apiPath}/assess/work/update`, data )
 }
 //----------------------------------------------------------------------
 export const getRankListApi = () => {

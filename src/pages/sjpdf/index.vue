@@ -57,7 +57,7 @@ export default Vue.extend({
       uInputStyle: {
         color: '#black',
         fontSize: '30rpx',
-        textAlign: 'right',
+        textAlign: 'left',
         width: '500rpx'
       },
       emailS: '',

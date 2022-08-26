@@ -183,6 +183,175 @@
                   placeholder="请输入" />
               </view>
             </view>
+            <view>
+              <view class="title">学习经历(学历教育)</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in studyExp" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteWorkExp(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label"> 工作时间 </view> -->
+
+                  <view class="in-label">
+                    学习时间
+                  </view>
+                  <view class="date-content">
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.educationBeginTime"
+                        fields="month" :start="startDate" :end="endDate" @change="educationBeginTimeConfirm($event, index)">
+                        <view v-if="item.educationBeginTime" class="uni-input">{{ item.educationBeginTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">起始时间</view>
+                      </picker>
+                    </view>
+                    <view>至</view>
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.educationEndTime"
+                        fields="month" :start="startDate" :end="endDate" @change="educationEndTimeConfirm($event, index)">
+                        <view v-if="item.educationEndTime" class="uni-input">{{ item.educationEndTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">终止时间</view>
+                      </picker>
+                    </view>
+                  </view>
+
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">学习专业</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.educationMajor" maxlength="20"
+                      placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                      placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">院校名称</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.educationSchoolName" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">取得学历</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.educationLevel" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(workExp)" />
+              </view>
+            </view>
+            <view>
+              <view class="title">学习经历(非学历教育)</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in workExp" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteWorkExp(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label"> 工作时间 </view> -->
+
+                  <view class="in-label">
+                    学习时间
+                  </view>
+                  <view class="date-content">
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.workBeginTime"
+                        fields="month" :start="startDate" :end="endDate" @change="workBeginTimeConfirm($event, index)">
+                        <view v-if="item.workBeginTime" class="uni-input">{{ item.workBeginTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">起始时间</view>
+                      </picker>
+                    </view>
+                    <view>至</view>
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.workEndTime"
+                        fields="month" :start="startDate" :end="endDate" @change="workEndTimeConfirm($event, index)">
+                        <view v-if="item.workEndTime" class="uni-input">{{ item.workEndTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">终止时间</view>
+                      </picker>
+                    </view>
+                  </view>
+
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">学习地点</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workCompanyName" maxlength="20"
+                      placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                      placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">学习内容</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workCity" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">获得证书</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workPost" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(workExp)" />
+              </view>
+            </view>
+            <view>
+              <view class="title">工作经历</view>
+              <view :style="{ 'margin-bottom': '80rpx' }" v-for="(item, index) in workExp" :key="index">
+                <view :style="{ 'text-align': 'right', color: '#9094A0' }" @click="deleteWorkExp(item)">删除</view>
+                <view class="in-box at-row align-center space-between">
+                  <!-- <view class="in-label"> 工作时间 </view> -->
+                  <view class="in-label">
+                    工作时间
+                  </view>
+                  <view class="date-content">
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.workBeginTime"
+                        fields="month" :start="startDate" :end="endDate" @change="workBeginTimeConfirm($event, index)">
+                        <view v-if="item.workBeginTime" class="uni-input">{{ item.workBeginTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">起始时间</view>
+                      </picker>
+                    </view>
+                    <view>---</view>
+                    <view class="uni-list-cell-db">
+                      <picker style="min-height:70rpx;min-width: 150rpx;" mode="date" :value="item.workEndTime"
+                        fields="month" :start="startDate" :end="endDate" @change="workEndTimeConfirm($event, index)">
+                        <view v-if="item.workEndTime" class="uni-input">{{ item.workEndTime }}</view>
+                        <view v-else style="color:#9094A0;text-align: center;">终止时间</view>
+                      </picker>
+                    </view>
+                  </view>
+
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">单位名称</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workCompanyName" maxlength="20"
+                      placeholder-style="color:#9094A0;font-size:30rpx" :clearable="false" :custom-style="uInputStyle"
+                      placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">所在城市</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workCity" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+                <view class="in-box at-row align-center space-between">
+                  <view class="in-label">最高职位</view>
+                  <view class="flex-group at-row align-center space-between">
+                    <u-input v-model="item.workPost" maxlength="20" placeholder-style="color:#9094A0;font-size:30rpx"
+                      :clearable="false" :custom-style="uInputStyle" placeholder="请输入" />
+                  </view>
+                </view>
+              </view>
+              <view class="addbtn">
+                <img :src="imgArrow" alt="" @click="additem(workExp)" />
+              </view>
+            </view>
+
+
             <view class="in-box at-row align-center space-between">
               <view class="in-label">
                 是否有创业经历
@@ -213,6 +382,7 @@
             <view class="btn1" @click="evaluateSj()">下一页</view>
             <view class="btn1" @click="exitAndSave()">保存退出</view>
           </view>
+
           <rcyj-picker-single ref="healthStatusSelect" :list="healthStatusList" @confirm="societyPostLevelConfirm" />
           <rcyj-picker-single ref="marryStatusSelect" :list="marryStatusList" @confirm="marryStatusConfirm" />
           <rcyj-picker-single ref="militaryServiceSelect" :list="militaryServiceList" @confirm="rdLevelConfirm" />
@@ -221,7 +391,8 @@
             @confirm="securityPaymentConfirm" />
           <rcyj-picker-single ref="securitySpendSelect" :list="securitySpendList" @confirm="securitySpendConfirm" />
           <rcyj-picker-single ref="checkEntExp" :list="check" @confirm="checkEntExpConfirm" />
-
+          <rcyj-date ref="selectDateStart" @confirm="workDateConfim1" />
+          <rcyj-date ref="selectDateEnd" @confirm="workDateConfim2" />
         </view>
       </view>
     </view>
@@ -255,8 +426,15 @@ import {
   foreignSpecialtyDelete,
   foreignSpecialtyAdd,
   foreignSpecialtyUpdate,
-  foreignSpecialtyList
+  foreignSpecialtyList,
+  workExpDelete,
+  workExpAdd,
+  workExpList,
+  workExpUpdate
+
 } from '@/api/common.js'
+
+import AssessDatePicker from '../../components/assess-date-picker/assess-date-picker.vue'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
 import FunPop from '../components/fun-pop/fun-pop.vue'
@@ -266,6 +444,7 @@ import { showScore } from '@/utils/utils'
 const config = require('@/config/index')
 export default Vue.extend({
   components: {
+    AssessDatePicker,
     MinePop,
     FunPop,
     RcjyInput,
@@ -365,17 +544,45 @@ export default Vue.extend({
           },
         ],
         comeDuration: '',
-      }
+      },
+      workExp: [
+        {
+          id: "",
+          workBeginTime: '',
+          workEndTime: '',
+          workCity: '',
+          workCompanyName: '',
+          workPost: ''
+        },
+      ],
+      studyExp: [
+        {
+          id: "",
+          educationBeginTime: "",
+          educationEndTime: "",
+          educationMajor: "",
+          educationSchoolName: "",
+          educationLevel: "",
+        },
+      ],
       //----------------------
     }
   },
   onLoad() {
-
+    this.init()
   },
   onShow() {
     // let dictType = 'identity'
     // console.log(this.$route.params)
-    this.init()
+
+  },
+  computed: {
+    startDate() {
+      return this.getDate('start');
+    },
+    endDate() {
+      return this.getDate('end');
+    }
   },
   methods: {
     getIdentity(data) {
@@ -383,6 +590,42 @@ export default Vue.extend({
       console.log(data);
       this.identity = data.value;
       console.log(this.identity);
+    },
+    workBeginTimeConfirm(data, index) {
+
+      this.workExp[index].workBeginTime = data.detail.value
+      console.log(this.workExp)
+    },
+    workEndTimeConfirm(data, index) {
+      this.workExp[index].workEndTime = data.detail.value
+      console.log(this.workExp)
+    },
+    deleteWorkExp(item) {
+      if (!item.id) this.workExp.splice(item.index, 1);
+      else {
+        const ids = [];
+        ids.push(item.id);
+        workExpDelete({
+          ids: ids.join(","),
+        }).then((result) => {
+          this.init();
+        });
+      }
+    },
+    getDate(type) {
+      const date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1;
+      let day = date.getDate();
+
+      if (type === 'start') {
+        year = year - 60;
+      } else if (type === 'end') {
+        year = year + 2;
+      }
+      month = month > 9 ? month : '0' + month;
+      day = day > 9 ? day : '0' + day;
+      return `${year}-${month}-${day}`;
     },
     async init() {
       this.getToken = this.$ls.get('KEY_ACCESS_TOKEN')
@@ -453,6 +696,9 @@ export default Vue.extend({
         })
         await foreignSpecialtyList().then((data) => {
           this.foreignInfo.specialty = data
+        })
+        await workExpList().then((data) => {
+          this.workExp = data
         })
         await additionalDetail().then((data) => {
           //  console.log(data)
@@ -632,7 +878,7 @@ export default Vue.extend({
         "entrepreneurialExperienceDes": entrepreneurialExperience
       }
       console.log(params)
-     await additionalUpdate(params).then((data) => {
+      await additionalUpdate(params).then((data) => {
         // this.$changePage({
         //   // params: {
         //   //   data: this.identityType
@@ -656,6 +902,26 @@ export default Vue.extend({
 
       });
     },
+    workExpSub() {
+      for (let i = 0; i < this.workExp.length; i++) {
+        let paramsD = {
+          'workBeginTime': this.workExp[i].workBeginTime,
+          'workEndTime': this.workExp[i].workEndTime,
+          'workCompanyName': this.workExp[i].workCompanyName,
+          'workCity': this.workExp[i].workCity,
+          'workPost': this.workExp[i].workPost,
+        };
+        console.log(this.workExp[i])
+        if (this.workExp[i].id) {
+          const data = Object.assign({}, paramsD, {
+            id: this.workExp[i].id,
+          });
+          workExpUpdate(data).then((result) => { console.log(result + 'update') });
+        } else {
+          workExpAdd(paramsD).then((result) => { console.log(result + 'add') });
+        }
+      }
+    },
     saveList(list, item, add, update) {
       for (let i = 0; i < list.length; i++) {
         let paramsD = {
@@ -673,8 +939,8 @@ export default Vue.extend({
       }
     },
     pageBack() {
-      let urlc = this.identity == '8'?  "pages/evaSocietypostFor/index": "pages/evaSocietypost/index"
-      
+      let urlc = this.identity == '8' ? "pages/evaSocietypostFor/index" : "pages/evaSocietypost/index"
+
       this.$changePage({
         params: {
           data: this.identity,
@@ -695,7 +961,7 @@ export default Vue.extend({
         personalIncomeTax,
         entrepreneurialExperienceS,
         entrepreneurialExperience,
-        foreignInfo
+        foreignInfo,
       } = this
 
       await this.saveList(foreignInfo.comeReason, 'reasonComeChina', foreignReasonUpdate, foreignReasonAdd)
@@ -703,6 +969,8 @@ export default Vue.extend({
       await this.saveList(foreignInfo.solvePro, 'solveProblemContent', foreignProblemUpdate, foreignProblemAdd)
       await this.saveList(foreignInfo.comeCompany, 'enterpriseName', foreignEnterpriseUpdate, foreignEnterpriseAdd)
       await this.saveList(foreignInfo.specialty, 'specialtyContent', foreignSpecialtyUpdate, foreignSpecialtyAdd)
+
+      await this.workExpSub()
       // for (let i = 0; i < foreignInfo.comeReason.length; i++) {
       //   let paramsD = {
       //     'reasonComeChina': foreignInfo.comeReason[i].content,

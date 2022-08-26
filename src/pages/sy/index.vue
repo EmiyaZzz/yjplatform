@@ -123,16 +123,16 @@
             </view>
             <view>
               <view class="scroll_box">
-                <swiper class="swiper" circular="true" vertical="true" :display-multiple-items=itemlength :autoplay="autoplay"
-                  :interval="intervalRank" :duration="durationRank">
+                <swiper class="swiper" circular="true" vertical="true" :display-multiple-items=itemlength
+                  :autoplay="autoplay" :interval="intervalRank" :duration="durationRank">
                   <swiper-item v-for="(item, index) in rankList" :key="index" class="swiper-l">
                     <!-- <view class="swiper-item uni-bg-green" style="font-size:14rpx; width:200rpx">{{ item.create_time }}</view> -->
                     <view class="swiper-item uni-bg-green" style="font-size: 24rpx;margin-right:50rpx">{{
                         item.create_time
                     }}</view>
-                     <view v-if=" item.real_name" class="swiper-item uni-bg-green">{{ item.real_name.substring(0, 1) }}**
+                    <view v-if="item.real_name" class="swiper-item uni-bg-green">{{ item.real_name.substring(0, 1) }}**
                     </view>
-                    <view v-else class="swiper-item uni-bg-green">{{ item.real_name}}**
+                    <view v-else class="swiper-item uni-bg-green">{{ item.real_name }}**
                     </view>
                     <!-- <view class="swiper-item uni-bg-green">{{ item.real_name }}**</view> -->
                     <view class="swiper-item uni-bg-green" style="text-align: right;padding-right:40rpx">{{
@@ -151,7 +151,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import { certificateInit, scoreRecords, userInfo } from '@/api/common.js'
+import { certificateInit, scoreRecords, userInfo, argScore } from '@/api/common.js'
 import TopInfo from '../components/top-info/top-info.vue'
 import MinePop from '../components/mine-pop/mine-pop.vue'
 import FunPop from '../components/fun-pop/fun-pop.vue'
@@ -209,6 +209,7 @@ export default Vue.extend({
 
       intervalRank: 2000,
       durationRank: 2000,
+      argExp:0,
       list: [
         ' 有价是一种创业方式',
         ' 人才有价 人人有价',
@@ -243,7 +244,11 @@ export default Vue.extend({
       this.scoreStatus = data.scoreStatus
       console.log('阶段' + this.scoreStatus)
     })
-
+    argScore().then((data) => {
+      console.log(data)
+      this.argExp = data.score
+      this.list.push('身价指数:'+this.argExp)
+    })
   },
   methods: {
     getIdentity(data) {
