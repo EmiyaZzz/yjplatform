@@ -501,6 +501,15 @@ export const workExpUpdate = (data) => {  //new
   return post(`${apiPath}/assess/work/update`, data )
 }
 //----------------------------------------------------------------------
+///查询身价指数系统下载情况
+export const zsSystemInfo = (data) => {  //new
+  return get(`${apiPath}/assess/yjptOrder/queryZsSysInfo`, { params: data })
+}
+///获取身价指数系统提取码
+export const zsSystemCode = (data) => {  //new
+  return get(`${apiPath}/assess/yjptOrder/queryAssessSysCode`, { params: data })
+}
+//----------------------------------------------------------------------
 export const getRankListApi = () => {
   return get(`${apiPath}/assess/getRankList`)
 }

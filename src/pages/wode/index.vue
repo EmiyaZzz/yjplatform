@@ -55,7 +55,7 @@
             </view>
           </view>
           <view class="fun-middle-bg">
-             <view class="btn1 firstbtn whitebg" @click="toRecharge()">
+            <view class="btn1 firstbtn whitebg" @click="toRecharge()">
               <view class="img-l">
                 <img :src=imgcz alt="" />
               </view>
@@ -86,11 +86,17 @@
               <p class="p1">身价卡包</p>
             </view>
 
-            <view class="btn1 endbtn whitebg" @click="toDoc()">
+            <view class="btn1 whitebg" @click="toDoc()">
               <view class="img-l">
                 <img :src=imgda alt="" />
               </view>
               <p class="p1">身价档案</p>
+            </view>
+            <view class="btn1 endbtn whitebg" @click="toZhishu()">
+              <view class="img-l">
+                <img :src=imgjl alt="" />
+              </view>
+              <p class="p1">指数系统</p>
             </view>
           </view>
           <!-- <view class="fun-bg">
@@ -382,6 +388,9 @@ export default Vue.extend({
       //     }, 2000);
       //   }
       // }
+    },
+    toZhishu() {
+      this.$changePage('pages/sjuse/zsSystem')
     },
     toUpdate() {
       this.isShow = false

@@ -49,18 +49,18 @@
               </view>
             </view>
             <!-- <view class="per">高于90%人群</view> -->
-            <view class="btn-box1" v-if="scoreStatus != '0'">
-              <view class="box1" @click="toTeam">
-                <view class="img-panel">
-                  <img :src=imgCurrentSj alt="" />
-                </view>
-                <p>团队信息</p>
-              </view>
+            <view class="btn-box1" v-if="scoreStatus != '0'">        
               <view class="box1" @click="toAssessment">
                 <view class="img-panel">
                   <img :src=imgUpSj alt="">
                 </view>
                 <p>身价提升</p>
+              </view>
+               <view class="box1" @click="toTeam">
+                <view class="img-panel">
+                  <img :src=imgCurrentSj alt="" />
+                </view>
+                <p>团队评估</p>
               </view>
             </view>
             <view class="search-box" v-if="scoreStatus == 3">

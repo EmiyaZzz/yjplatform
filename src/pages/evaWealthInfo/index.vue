@@ -145,6 +145,7 @@
             <view class="btn1" @click="evaluateSj()">提升完成</view>
             <!-- <view class="btn1" @click="exitAndSave()">保存退出</view> -->
           </view>
+          <diy-pop ref="diypop"/>
           <rcyj-picker-single ref="check1" :list="check" @confirm="check1Confirm" />
           <rcyj-picker-single ref="check2" :list="check" @confirm="check2Confirm" />
 
@@ -169,12 +170,14 @@ import {
   batchupdate,
   queryDictDataByType
 } from "@/api/common.js";
+// 
 import TopInfo from "../components/top-info/top-info.vue";
 import MinePop from "../components/mine-pop/mine-pop.vue";
 import FunPop from "../components/fun-pop/fun-pop.vue";
 import RcyjIcon from "../../components/rcyj-icon/rcyj-icon.vue";
 import RcjyInput from "../../components/rcyj-input/rcjy-input.vue";
-import { showScore } from '@/utils/utils'
+import { showScore } from '@/utils/utils';
+import DiyPop from '../components/diy-pop/diy-pop.vue';
 const config = require("@/config/index");
 export default Vue.extend({
   components: {
@@ -183,6 +186,7 @@ export default Vue.extend({
     RcjyInput,
     RcyjIcon,
     TopInfo,
+    DiyPop
   },
   data() {
     return {
@@ -430,7 +434,7 @@ export default Vue.extend({
         url: "pages/evaAdditional/index",
       });
     },
-    evaluateSj(result) {
+    evaluateSj(result) {  
       const {
         userId,
         annualIncome,
@@ -498,6 +502,7 @@ export default Vue.extend({
                   url: "../index/index",
                 });
               }, 2000);
+              // this.$refs.diypop.vueShowModel = false
             });
           });
           // this.$changePage({

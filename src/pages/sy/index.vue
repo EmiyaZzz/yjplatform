@@ -247,7 +247,11 @@ export default Vue.extend({
     argScore().then((data) => {
       console.log(data)
       this.argExp = data.score
-      this.list.push('身价指数:'+this.argExp)
+      this.list.length = 0
+      this.list.push('今日身价指数:'+this.argExp)
+      this.list.push('今日身价指数:'+this.argExp)
+      this.list.push('有价是一种创业方式')
+      this.list.push('人才有价 人人有价')
     })
   },
   methods: {

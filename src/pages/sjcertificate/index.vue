@@ -12,7 +12,12 @@
 
         <view class="fun-bg">
           <!-- <view class="btn1" @click="avatorImgUpload">委托制作</view> -->
-          <view class="btn1" @click="openSheet('headImg')">照片上传</view>
+          <view class="btn1" @click="openSheet('headImg')">
+            <view class="twoLine">
+              <view style="text-align:center;">照片上传</view>
+              <view style="font-size: 20rpx;text-align:center;">150*150以内正方形图片</view>
+            </view>
+          </view>
           <view class="btn1" @click="toBuy" v-if="payStatus == '0'">认领</view>
           <view class="btn1" @click="toBuy" v-if="isExpired == '1'">认领</view>
           <view class="btn1" @click="downloadImg" v-if="payStatus == '1'">下载</view>

@@ -224,6 +224,12 @@
 			}
 		},
 		{
+			"path": "pages/sjuse/zsSystem",
+			"style": {
+				"navigationBarTitleText": "指数系统"
+			}
+		},
+		{
 			"path": "pages/sjpdf/index",
 			"style": {
 				"navigationBarTitleText": "报告"
