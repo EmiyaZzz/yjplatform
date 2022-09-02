@@ -497,11 +497,11 @@ export default Vue.extend({
                 title: `恭喜您完成身价提升，奖励您50身价分`,
                 duration: 2000,
               });
-              setTimeout(() => {
-                wx.switchTab({
-                  url: "../index/index",
-                });
-              }, 2000);
+              // setTimeout(() => {
+              //   wx.switchTab({
+              //     url: "../index/index",
+              //   });
+              // }, 2000);
               // this.$refs.diypop.vueShowModel = false
             });
           });
